@@ -16,114 +16,108 @@ export const Navbar = () => {
     setIsMenuOpen(false);
   };
 
+  // The main navigation links
   const menuItems = [
     { href: "/chi-siamo", label: "Chi Siamo" },
     { href: "/news-eventi", label: "Eventi" },
+    { href: "/iscriviti", label: "Iscriviti" },
     { href: "/documenti", label: "Documenti" },
     { href: "/contatti", label: "Contatti" },
   ];
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm absolute top-0 z-50 w-full border-b border-gray-100">
-      <nav className="mx-auto px-6 sm:px-12 lg:px-18 md:py-2 lg:py-3">
-        <div className="flex justify-between md:grid-cols-3 items-center h-20">
-          {/* Logo section - Left */}
-          <div className="flex items-center justify-start">
+    <header className="top-0 z-50 w-full">
+      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/*
+          MOBILE HEADER (lg:hidden)
+          Simple, classic layout with logo on the left and hamburger on the right.
+        */}
+        <div className="relative flex h-20 items-center justify-between lg:hidden">
+          {/* Mobile Logo */}
+          <div className="flex-shrink-0">
             <Link
               href="/"
-              className="flex items-center space-x-3 hover:opacity-80 transition-opacity group"
+              onClick={closeMenu}
+              className="flex items-center gap-2"
             >
-              <div className="relative w-20 h-20 flex-shrink-0">
+              <div className="relative h-12 w-12">
                 <Image
                   src="/images/logo_gd_fvg.png"
                   alt="Logo Giovani Democratici FVG"
                   fill
-                  className="object-contain group-hover:scale-105 transition-transform duration-200"
+                  className="object-contain"
                 />
               </div>
-              <div className="hidden sm:block">
-                <p className="text-xl font-semibold text-custom-text leading-tight">
-                  GD FVG
-                </p>
-              </div>
+              <span className="text-xl font-semibold text-gray-900">GD FVG</span>
             </Link>
           </div>
 
-          {/* Desktop Navigation Menu - Center */}
-          <div className="hidden md:flex items-center justify-center">
-            <div className="flex items-center md:space-x-2 lg:space-x-4">
-              {menuItems.map((item, key) => (
-                <Link
-                  key={key}
-                  href={item.href}
-                  className="text-custom-text hover:text-custom-orange px-4 py-2 text-lg transition-all duration-200 relative group rounded-lg hover:bg-orange-50 min-w-max"
-                >
-                  {item.label}
-                  <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-custom-orange scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center justify-end">
-            {/* Desktop CTA */}
-            <Link
-              href="/iscriviti"
-              className="hidden md:block bg-custom-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
-            >
-              ISCRIVITI
-            </Link>
-
-            {/* Mobile menu button */}
+          {/* Mobile Menu Button */}
+          <div>
             <button
               onClick={toggleMenu}
-              className="block md:hidden text-custom-text hover:text-custom-orange p-3 rounded-lg transition-colors duration-200 hover:bg-gray-50"
-              aria-label="Toggle menu"
+              className="inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-400"
+              aria-expanded={isMenuOpen}
+              aria-label="Apri menù principale"
             >
-              {isMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
-        <div
-          className={`md:hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen
-              ? "max-h-96 opacity-100"
-              : "max-h-0 opacity-0 overflow-hidden"
-          }`}
-        >
-          <div className="px-4 pt-4 pb-6 space-y-2 bg-white/95 backdrop-blur-sm border-t border-gray-100">
-            <div className="flex flex-col items-center space-y-2">
-              {menuItems.map((item, key) => (
-                <Link
-                  key={key}
-                  href={item.href}
-                  onClick={closeMenu}
-                  className="block px-4 py-3 text-lg text-custom-text hover:text-custom-orange hover:bg-orange-50 rounded-lg transition-colors duration-200 text-center min-w-[200px]"
-                >
-                  {item.label}
-                </Link>
-              ))}
+        {/*
+          DESKTOP HEADER (hidden lg:flex)
+          Centered logo above the navigation links.
+        */}
+        <div className="hidden lg:flex flex-col items-center gap-y-4 py-4">
+          {/* Desktop Logo */}
+          <Link href="/" className="group">
+            <div className="relative h-36 w-36">
+              <Image
+                src="/images/logo_gd_fvg.png"
+                alt="Logo Giovani Democratici FVG"
+                fill
+                className="object-contain transition-transform duration-300 group-hover:scale-105"
+                priority
+              />
             </div>
+          </Link>
 
-            {/* Mobile CTA Button */}
-            <div className="pt-4 px-4 flex justify-center">
+          {/* Desktop Navigation Links */}
+          <div className="flex items-center gap-x-8 ml-3">
+            {menuItems.map((item) => (
               <Link
-                href="/iscriviti"
-                onClick={closeMenu}
-                className="block w-full bg-custom-orange hover:bg-orange-600 text-white text-center px-6 py-4 rounded-full font-semibold shadow-lg transition-colors duration-200 min-w-[200px]"
+                key={item.href}
+                href={item.href}
+                className="relative px-3 py-2 text-lg transition-colors duration-300 hover:text-orange-400 group"
               >
-                ISCRIVITI
+                {item.label}
               </Link>
-            </div>
+            ))}
           </div>
         </div>
       </nav>
+
+      {/*
+        MOBILE MENU PANEL
+        This panel slides down from the top on mobile when the hamburger is clicked.
+      */}
+      {isMenuOpen && (
+        <div className="lg:hidden" id="mobile-menu">
+          <div className="space-y-1 px-2 pb-3 pt-2">
+            {menuItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={closeMenu}
+                className="block rounded-md px-3 py-2 text-lg text-center text-gray-700 hover:bg-orange-50 hover:text-orange-400"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </header>
   );
 };

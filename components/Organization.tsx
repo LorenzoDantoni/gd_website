@@ -36,7 +36,7 @@ export const Organization = () => {
               </div>
             </div>
             <h3 className="mt-6 text-3xl font-extrabold text-orange-600">
-              Segreteria Regionale
+              Regionale
             </h3>
             <p className="mt-4 text-lg text-gray-700">
               Il cuore pulsante dell'organizzazione, che coordina le attività e

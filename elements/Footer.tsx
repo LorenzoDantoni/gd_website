@@ -34,7 +34,7 @@ export default function Footer() {
                 <p className="text-xl font-bold text-white tracking-wide">
                   GIOVANI DEMOCRATICI
                 </p>
-                <p className="text-base font-semibold text-red-500">
+                <p className="text-base font-semibold text-red-600">
                   Friuli Venezia Giulia
                 </p>
               </div>

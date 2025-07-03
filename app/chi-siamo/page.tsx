@@ -1,6 +1,5 @@
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 const federations = [
   {
@@ -29,7 +28,7 @@ export default function ChiSiamoPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <header className="bg-gradient-to-br from-orange-400 to-orange-500 shadow-sm min-h-[15vh] flex items-center">
+      <header className="bg-gradient-to-br from-orange-400 to-orange-500 shadow-lg min-h-[20vh] flex items-center">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
             Chi Siamo
@@ -46,7 +45,7 @@ export default function ChiSiamoPage() {
                 Le nostre radici
               </h2>
               <p className="text-gray-700 leading-relaxed">
-                <span className="font-semibold">Giovani Democratici (GD)</span>{" "}
+                <span className="font-semibold">Giovani Democratici (GD)</span>
                 è l'organizzazione giovanile del Partito Democratico che
                 accoglie gli iscritti fino ai 30 anni. È nata nel 2008 dalla
                 fusione tra Sinistra Giovanile (giovanile dei Democratici di

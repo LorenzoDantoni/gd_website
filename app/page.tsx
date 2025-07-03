@@ -6,7 +6,9 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <News />
+      <section className="bg-gray-50 py-16 sm:py-24">
+        <News />
+      </section>
       <Organization />
     </>
   );

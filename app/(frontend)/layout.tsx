@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="it" suppressHydrationWarning>
       <body>
         <Navbar />
         <main className="flex flex-col overflow-hidden">

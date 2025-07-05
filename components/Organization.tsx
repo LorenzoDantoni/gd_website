@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Users, MapPin, Star } from "lucide-react";
+import { Users, MapPin, Star, Shield } from "lucide-react";
 
 const federations = [
   { name: "Trieste", members: 20, icon: <MapPin size={48} />, province: "TS" },
@@ -22,14 +22,11 @@ export const Organization = () => {
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
           La nostra Organizzazione
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-xl font-semibold text-orange-100">
-          Siamo presenti in tutta la regione, dal Carso alle Alpi, per portare
-          avanti le nostre idee.
-        </p>
 
-        {/* Regional Card - Redesigned */}
-        <div className="mt-20 flex justify-center">
-          <div className="relative w-full max-w-xl rounded-[30px] border border-orange-400 bg-orange-50 p-10 shadow-lg text-center transition-all duration-300 hover:scale-105 hover:border-black hover:shadow-orange-500/30">
+        {/* Regional & Guarantee Commission Cards */}
+        <div className="mt-20 flex flex-col lg:flex-row justify-center gap-12 lg:gap-8">
+          {/* Regional Card */}
+          <div className="relative w-full max-w-xl rounded-[30px] border border-orange-400 bg-gray-100 p-10 shadow-lg text-center transition-all duration-300 hover:scale-105 hover:border-black hover:shadow-orange-500/30">
             <div className="absolute -top-6 left-1/2 -translate-x-1/2 transform">
               <div className="rounded-full bg-orange-500 p-3 shadow-md text-white">
                 <Star size={32} />
@@ -49,13 +46,35 @@ export const Organization = () => {
               CONOSCI IL NOSTRO TEAM
             </Link>
           </div>
+
+          {/* Commissione di Garanzia Card */}
+          <div className="relative w-full max-w-xl rounded-[30px] border border-orange-400 bg-gray-100 p-10 shadow-lg text-center transition-all duration-300 hover:scale-105 hover:border-black hover:shadow-orange-500/30">
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 transform">
+              <div className="rounded-full bg-orange-500 p-3 shadow-md text-white">
+                <Shield size={32} />
+              </div>
+            </div>
+            <h3 className="mt-6 text-3xl font-extrabold text-orange-600">
+              Commissione di Garanzia
+            </h3>
+            <p className="mt-4 text-lg text-gray-700">
+              L'organo che vigila sullo Statuto e il corretto funzionamento
+              dell'organizzazione, garantendo i diritti degli iscritti.
+            </p>
+            <Link
+              href="/chi-siamo/commissione-garanzia"
+              className="mt-8 inline-block rounded-full bg-orange-500 px-8 py-3 font-bold text-white transition hover:bg-orange-600"
+            >
+              SCOPRI LA COMMISSIONE
+            </Link>
+          </div>
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {federations.map((fed) => (
             <div
               key={fed.name}
-              className="transform rounded-[22px] border-2 border-transparent bg-orange-100 p-8 text-gray-800 shadow-lg transition-all duration-300 hover:scale-105 hover:border-black hover:shadow-orange-500/30"
+              className="transform rounded-[22px] border-2 border-transparent bg-orange-50 p-8 text-gray-800 shadow-lg transition-all duration-300 hover:scale-105 hover:border-black hover:shadow-orange-500/30"
             >
               <div className="flex items-center justify-center">
                 <div

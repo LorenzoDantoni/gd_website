@@ -117,7 +117,7 @@ export const News = ({ province }: { province?: string }) => {
       <div className="mt-16 text-center">
         <Link
           href="/news-eventi"
-          className="inline-block rounded-full bg-orange-500 px-8 py-3 text-lg font-semibold text-white shadow-md transition-all duration-300 hover:bg-orange-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+          className="inline-block rounded-full bg-orange-400 px-8 py-3 text-lg font-semibold text-white shadow-md transition-all duration-300 hover:bg-orange-500 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
         >
           Vedi tutte le news
         </Link>

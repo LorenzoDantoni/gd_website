@@ -1,15 +1,15 @@
 import Image from "next/image";
 import { User, Download } from "lucide-react";
 import { News } from "@/components/News";
-import { vipUdine, otherRolesUdine, documentsUdine, direzioneProvincialeUdine, assembleaProvincialeUdine } from "@/data/udine";
+import { vipTrieste, otherRolesTrieste, documentsTrieste, direzioneProvincialeTrieste, assembleaProvincialeTrieste } from "@/data/trieste";
 
-export default function UdinePage() {
+export default function TriestePage() {
   return (
     <>
       <header className="bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-lg min-h-[20vh] flex justify-center">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 mt-8">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Federazione di Udine
+            Federazione di Trieste
           </h1>
         </div>
       </header>
@@ -19,7 +19,7 @@ export default function UdinePage() {
         <section className="bg-gray-50 py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
-              {vipUdine.map((member) => (
+              {vipTrieste.map((member) => (
                 <div
                   key={member.name}
                   className="w-full max-w-xs flex flex-col items-center text-center rounded-lg border border-gray-300 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-lg"
@@ -54,7 +54,7 @@ export default function UdinePage() {
             </div>
             <div className="bg-white rounded-lg shadow-md p-8 border border-gray-300">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                {otherRolesUdine.map((member) => (
+                {otherRolesTrieste.map((member) => (
                   <div key={member.name} className="bg-gray-100 p-4 rounded-lg text-center flex items-center justify-center space-x-2">
                     <User className="h-5 w-5 text-orange-500" />
                     <div>
@@ -70,7 +70,7 @@ export default function UdinePage() {
 
         {/* News Section */}
         <section className="bg-gray-50 py-16 sm:py-24">
-          <News province="Udine" />
+          <News province="Trieste" />
         </section>
 
         {/* Documents Section */}
@@ -83,7 +83,7 @@ export default function UdinePage() {
             </div>
             <div className="bg-white rounded-lg shadow-md p-8 border border-gray-300">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {documentsUdine.map((doc) => (
+                {documentsTrieste.map((doc) => (
                   <a href={doc.link} key={doc.title} className="bg-gray-100 p-6 rounded-lg flex items-center justify-between border border-gray-200 hover:bg-gray-200 transition-colors group">
                     <div>
                       <p className="text-lg font-semibold text-gray-800 group-hover:text-orange-500">{doc.title}</p>
@@ -113,7 +113,7 @@ export default function UdinePage() {
                   </h3>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {direzioneProvincialeUdine.map((member) => (
+                  {direzioneProvincialeTrieste.map((member) => (
                     <div key={member.name} className="bg-gray-100 p-4 rounded-lg text-center flex items-center justify-center space-x-2">
                       <User className="h-5 w-5 text-orange-500" />
                       <p className="text-base font-medium text-gray-800">{member.name}</p>
@@ -129,7 +129,7 @@ export default function UdinePage() {
                   </h3>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                  {assembleaProvincialeUdine.map((member) => (
+                  {assembleaProvincialeTrieste.map((member) => (
                     <div key={member.name} className="bg-gray-100 p-4 rounded-lg text-center flex items-center justify-center space-x-2">
                       <User className="h-5 w-5 text-orange-500" />
                       <p className="text-base font-medium text-gray-800">{member.name}</p>

@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { commissioneGaranzia } from "@/data/commissione-garanzia";
-import { Scale, ShieldCheck, Users, Vote } from "lucide-react";
+import { documentsCommissioneGaranzia } from "@/data/documents-commissione-garanzia";
+import { Scale, ShieldCheck, Users, Vote, Download } from "lucide-react";
 
 export default function CommissioneGaranziaPage() {
   return (
-    <div className="bg-gray-50">
+    <div>
       <header className="bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-lg min-h-[20vh] flex justify-center">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 mt-8">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
@@ -13,45 +14,64 @@ export default function CommissioneGaranziaPage() {
         </div>
       </header>
 
-      <main className="py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Sezione Ruoli e Funzioni */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Ruoli e Funzioni
-            </h2>
-          </div>
-          <div className="bg-white rounded-xl shadow-lg p-8 lg:p-12 border border-gray-200/80">
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-xl text-gray-700">
-                La Commissione di Garanzia è l'organo di giurisdizione interna del partito. È un organo collegiale, autonomo e indipendente, che ha il compito di vigilare sul rispetto dello Statuto, dei regolamenti e del Codice Etico da parte degli iscritti, degli organi di partito e dei rappresentanti istituzionali.
-              </p>
-              <p className="mt-10 text-2xl font-bold text-gray-800">
-                Le sue funzioni principali includono:
-              </p>
+      <main>
+        <section className="bg-gray-50 py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Sezione Ruoli e Funzioni */}
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Ruoli e Funzioni
+              </h2>
             </div>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-gray-50 p-6 rounded-lg text-center border border-gray-200">
-                <Scale className="h-10 w-10 text-orange-500 mx-auto" />
-                <p className="mt-4 text-lg font-semibold text-gray-800">Interpretare lo Statuto e i regolamenti in caso di controversie.</p>
+            <div className="bg-white rounded-xl shadow-lg p-8 lg:p-12 border border-gray-200/80">
+              <div className="max-w-4xl mx-auto text-center">
+                <p className="text-xl text-gray-700">
+                  La Commissione di Garanzia è l'organo di giurisdizione
+                  interna del partito. È un organo collegiale, autonomo e
+                  indipendente, che ha il compito di vigilare sul rispetto
+                  dello Statuto, dei regolamenti e del Codice Etico da parte
+                  degli iscritti, degli organi di partito e dei
+                  rappresentanti istituzionali.
+                </p>
+                <p className="mt-10 text-2xl font-bold text-gray-800">
+                  Le sue funzioni principali includono:
+                </p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg text-center border border-gray-200">
-                <Users className="h-10 w-10 text-orange-500 mx-auto" />
-                <p className="mt-4 text-lg font-semibold text-gray-800">Risolvere le controversie tra iscritti o tra iscritti e organi del partito.</p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-lg text-center border border-gray-200">
-                <ShieldCheck className="h-10 w-10 text-orange-500 mx-auto" />
-                <p className="mt-4 text-lg font-semibold text-gray-800">Istruttoria e decisione sui procedimenti disciplinari.</p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-lg text-center border border-gray-200">
-                <Vote className="h-10 w-10 text-orange-500 mx-auto" />
-                <p className="mt-4 text-lg font-semibold text-gray-800">Vigilare sulla regolarità dei congressi e delle primarie.</p>
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-gray-50 p-6 rounded-lg text-center border border-gray-200">
+                  <Scale className="h-10 w-10 text-orange-500 mx-auto" />
+                  <p className="mt-4 text-lg font-semibold text-gray-800">
+                    Interpretare lo Statuto e i regolamenti in caso di
+                    controversie.
+                  </p>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg text-center border border-gray-200">
+                  <Users className="h-10 w-10 text-orange-500 mx-auto" />
+                  <p className="mt-4 text-lg font-semibold text-gray-800">
+                    Risolvere le controversie tra iscritti o tra iscritti e
+                    organi del partito.
+                  </p>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg text-center border border-gray-200">
+                  <ShieldCheck className="h-10 w-10 text-orange-500 mx-auto" />
+                  <p className="mt-4 text-lg font-semibold text-gray-800">
+                    Istruttoria e decisione sui procedimenti disciplinari.
+                  </p>
+                </div>
+                <div className="bg-gray-50 p-6 rounded-lg text-center border border-gray-200">
+                  <Vote className="h-10 w-10 text-orange-500 mx-auto" />
+                  <p className="mt-4 text-lg font-semibold text-gray-800">
+                    Vigilare sulla regolarità dei congressi e delle primarie.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+        </section>
 
-          {/* Sezione Membri */}
-          <div className="mt-24">
+        {/* Sezione Membri */}
+        <section className="bg-gray-200 py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 Membri
@@ -81,7 +101,31 @@ export default function CommissioneGaranziaPage() {
               ))}
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* Documents Section */}
+        <section className="bg-gray-50 py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Documenti Utili
+              </h2>
+            </div>
+            <div className="bg-white rounded-lg shadow-md p-8 border border-gray-300">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {documentsCommissioneGaranzia.map((doc) => (
+                  <a href={doc.link} key={doc.title} className="bg-gray-100 p-6 rounded-lg flex items-center justify-between border border-gray-200 hover:bg-gray-200 transition-colors group">
+                    <div>
+                      <p className="text-lg font-semibold text-gray-800 group-hover:text-orange-500">{doc.title}</p>
+                      <p className="text-gray-600">{doc.description}</p>
+                    </div>
+                    <Download className="h-8 w-8 text-orange-500" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   );

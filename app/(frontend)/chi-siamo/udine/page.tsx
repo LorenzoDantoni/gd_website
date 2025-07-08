@@ -2,8 +2,12 @@ import Image from "next/image";
 import { User, Download } from "lucide-react";
 import { News } from "@/components/News";
 import { vipUdine, otherRolesUdine, documentsUdine, direzioneProvincialeUdine, assembleaProvincialeUdine } from "@/data/udine";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { SanityDocument } from "@sanity/client";
+import { postsByFederationQuery } from "@/sanity/lib/queries";
 
-export default function UdinePage() {
+export default async function UdinePage() {
+  const posts = await sanityFetch<SanityDocument[]>({ query: postsByFederationQuery, params: { federation: "Udine" } });
   return (
     <>
       <header className="bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-lg min-h-[20vh] flex justify-center">
@@ -70,7 +74,7 @@ export default function UdinePage() {
 
         {/* News Section */}
         <section className="bg-gray-50 py-16 sm:py-24">
-          <News province="Udine" />
+          <News posts={posts} />
         </section>
 
         {/* Documents Section */}

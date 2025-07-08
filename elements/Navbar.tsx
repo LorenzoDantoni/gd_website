@@ -19,7 +19,7 @@ export const Navbar = () => {
   // The main navigation links
   const menuItems = [
     { href: "/chi-siamo", label: "Chi Siamo" },
-    { href: "/news-eventi", label: "Eventi" },
+    { href: "/news", label: "Eventi" },
     { href: "/iscriviti", label: "Iscriviti" },
     { href: "/documenti", label: "Documenti" },
     { href: "/contatti", label: "Contatti" },

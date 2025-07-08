@@ -2,8 +2,12 @@ import Image from "next/image";
 import { User, Download } from "lucide-react";
 import { News } from "@/components/News";
 import { vipPordenone, otherRolesPordenone, documentsPordenone, direzioneProvincialePordenone, assembleaProvincialePordenone } from "@/data/pordenone";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { SanityDocument } from "@sanity/client";
+import { postsByFederationQuery } from "@/sanity/lib/queries";
 
-export default function PordenonePage() {
+export default async function PordenonePage() {
+  const posts = await sanityFetch<SanityDocument[]>({ query: postsByFederationQuery, params: { federation: "Pordenone" } });
   return (
     <>
       <header className="bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-lg min-h-[20vh] flex justify-center">
@@ -70,7 +74,7 @@ export default function PordenonePage() {
 
         {/* News Section */}
         <section className="bg-gray-50 py-16 sm:py-24">
-          <News province="Pordenone" />
+          <News posts={posts} />
         </section>
 
         {/* Documents Section */}

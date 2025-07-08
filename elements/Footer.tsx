@@ -38,7 +38,7 @@ export default function Footer() {
             </div>
 
             {/* Link Utili */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 text-center sm:text-left">
               <h3 className="text-white font-bold text-lg mb-4 pb-2 border-b border-gray-600">
                 Link Utili
               </h3>
@@ -81,7 +81,7 @@ export default function Footer() {
             </div>
 
             {/* Federazioni */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 text-center sm:text-left">
               <h3 className="text-white font-bold text-lg mb-4 pb-2 border-b border-gray-600">
                 Federazioni
               </h3>
@@ -124,11 +124,11 @@ export default function Footer() {
             </div>
 
             {/* Social Media */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 text-center sm:text-left">
               <h3 className="text-white font-bold text-lg mb-4 pb-2 border-b border-gray-600">
                 Seguici
               </h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
                 <a
                   href="#"
                   className="inline-flex items-center justify-center w-10 h-10 bg-gray-700 hover:bg-orange-600 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900"
@@ -154,7 +154,7 @@ export default function Footer() {
             </div>
 
             {/* Link Esterni */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 text-center sm:text-left">
               <h3 className="text-white font-bold text-lg mb-4 pb-2 border-b border-gray-600">
                 Link Esterni
               </h3>
@@ -210,14 +210,14 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="border-t border-gray-600 py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4">
             <p className="text-sm text-gray-400 text-center sm:text-left">
               &copy; {currentYear} Giovani Democratici FVG. Tutti i diritti
               riservati.
             </p>
             <nav
               aria-label="Link legali"
-              className="flex items-center gap-4 text-sm"
+              className="flex items-center gap-4 text-sm justify-center sm:justify-end"
             >
               <Link
                 href="/privacy-policy"

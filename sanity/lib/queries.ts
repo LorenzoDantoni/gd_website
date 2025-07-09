@@ -17,6 +17,21 @@ export const postsQuery = (federation?: string, sort: string = "desc") => {
   }`;
 };
 
+// Get all documents with optional filtering and sorting
+export const documentsQuery = (federation?: string, sort: string = "desc") => {
+  const filter = federation ? `&& federation == "${federation}"` : "";
+
+  return groq`*[_type == "documento" ${filter}] | order(publishedAt ${sort}) {
+    _id,
+    _createdAt,
+    title,
+    slug,
+    federation,
+    publishedAt,
+    "fileURL": file.asset->url
+  }`;
+};
+
 // Get a single post by its _id
 export const postQuery = groq`*[_type == "post" && _id == $id][0]{
   _id,
@@ -58,3 +73,6 @@ export const postsByFederationQuery = groq`*[_type == "post" && federation == $f
 
 // Get all distinct federations
 export const federationsQuery = groq`array::unique(*[_type == "post" && defined(federation)].federation)`;
+
+// Get all distinct federations for documents
+export const documentFederationsQuery = groq`array::unique(*[_type == "documento" && defined(federation)].federation)`;

@@ -13,6 +13,28 @@
  */
 
 // Source: schema.json
+export type Documento = {
+  _id: string;
+  _type: "documento";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  federation?: "Regionale" | "Udine" | "Gorizia" | "Pordenone" | "Trieste" | "Comm. Garanzia";
+  publishedAt?: string;
+  file?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    media?: unknown;
+    _type: "file";
+  };
+};
+
 export type Post = {
   _id: string;
   _type: "post";
@@ -219,64 +241,9 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Post | BlockContent | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Documento | Post | BlockContent | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
-// Variable: postsQuery
-// Query: *[_type == "post"] | order(publishedAt desc){  _id,  _createdAt,  title,  slug,  federation,  publishedAt,  mainImage,  "imageURL": mainImage.asset->url,  body}
-export type PostsQueryResult = Array<{
-  _id: string;
-  _createdAt: string;
-  title: string | null;
-  slug: Slug | null;
-  federation: "Comm. Garanzia" | "Gorizia" | "Pordenone" | "Regionale" | "Trieste" | "Udine" | null;
-  publishedAt: string | null;
-  mainImage: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  } | null;
-  imageURL: string | null;
-  body: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-    listItem?: "bullet";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  }> | null;
-}>;
 // Variable: postQuery
 // Query: *[_type == "post" && _id == $id][0]{  _id,  _createdAt,  title,  slug,  federation,  publishedAt,  mainImage,  "imageURL": mainImage.asset->url,  body}
 export type PostQueryResult = {
@@ -387,13 +354,72 @@ export type LastPostsQueryResult = Array<{
     _key: string;
   }> | null;
 }>;
+// Variable: postsByFederationQuery
+// Query: *[_type == "post" && federation == $federation] | order(publishedAt desc)[0...4] {  _id,  _createdAt,  title,  slug,  federation,  publishedAt,  mainImage,  "imageURL": mainImage.asset->url,  body}
+export type PostsByFederationQueryResult = Array<{
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  slug: Slug | null;
+  federation: "Comm. Garanzia" | "Gorizia" | "Pordenone" | "Regionale" | "Trieste" | "Udine" | null;
+  publishedAt: string | null;
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  imageURL: string | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+}>;
+// Variable: federationsQuery
+// Query: array::unique(*[_type == "post" && defined(federation)].federation)
+export type FederationsQueryResult = Array<"Comm. Garanzia" | "Gorizia" | "Pordenone" | "Regionale" | "Trieste" | "Udine" | null>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\"] | order(publishedAt desc){\n  _id,\n  _createdAt,\n  title,\n  slug,\n  federation,\n  publishedAt,\n  mainImage,\n  \"imageURL\": mainImage.asset->url,\n  body\n}": PostsQueryResult;
     "*[_type == \"post\" && _id == $id][0]{\n  _id,\n  _createdAt,\n  title,\n  slug,\n  federation,\n  publishedAt,\n  mainImage,\n  \"imageURL\": mainImage.asset->url,\n  body\n}": PostQueryResult;
     "*[_type == \"post\"] | order(publishedAt desc)[0...4] {\n  _id,\n  _createdAt,\n  title,\n  slug,\n  federation,\n  publishedAt,\n  mainImage,\n  \"imageURL\": mainImage.asset->url,\n  body\n}": LastPostsQueryResult;
+    "*[_type == \"post\" && federation == $federation] | order(publishedAt desc)[0...4] {\n  _id,\n  _createdAt,\n  title,\n  slug,\n  federation,\n  publishedAt,\n  mainImage,\n  \"imageURL\": mainImage.asset->url,\n  body\n}": PostsByFederationQueryResult;
+    "array::unique(*[_type == \"post\" && defined(federation)].federation)": FederationsQueryResult;
   }
 }

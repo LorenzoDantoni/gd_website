@@ -3,14 +3,16 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { SanityDocument } from "@sanity/client";
-import PostCard from "@/components/PostCard";
+import DocumentCard from "@/components/DocumentCard";
 
-interface NewsFilterProps {
-  posts: SanityDocument[];
+interface DocumentFilterProps {
+  documents: SanityDocument[];
   federations: string[];
 }
 
-export const NewsFilter = ({ posts, federations }: NewsFilterProps) => {
+// TODO: same as News filter, can be refactored
+
+export const DocumentFilter = ({ documents, federations }: DocumentFilterProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -29,7 +31,7 @@ export const NewsFilter = ({ posts, federations }: NewsFilterProps) => {
       params.delete("federation");
     }
     params.set("sort", sortOrder);
-    router.push(`/news?${params.toString()}`);
+    router.push(`/documenti?${params.toString()}`);
   }, [selectedFederation, sortOrder, searchParams, router]);
 
   return (
@@ -40,6 +42,7 @@ export const NewsFilter = ({ posts, federations }: NewsFilterProps) => {
         <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
+            {/* Federation Filter */}
             <div className="flex-1 sm:max-w-sm">
               <label htmlFor="federation-filter" className="block text-sm font-semibold text-gray-900 mb-2">
                 Filtra per Federazione
@@ -108,7 +111,7 @@ export const NewsFilter = ({ posts, federations }: NewsFilterProps) => {
           {/* Results count */}
           <div className="mt-4 pt-4 border-t border-gray-200">
             <p className="text-sm text-gray-600">
-              {posts.length} {posts.length === 1 ? 'articolo trovato' : 'articoli trovati'}
+              {documents.length} {documents.length === 1 ? 'documento trovato' : 'documenti trovati'}
               {selectedFederation && (
                 <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
                   {selectedFederation}
@@ -128,10 +131,10 @@ export const NewsFilter = ({ posts, federations }: NewsFilterProps) => {
       </div>
 
       {/* News Grid */}
-      {posts.length > 0 ? (
+      {documents.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 xl:gap-10">
-          {posts.map((post) => (
-            <PostCard key={post?._id} post={post} />
+          {documents.map((document) => (
+            <DocumentCard key={document?._id} document={document} />
           ))}
         </div>
       ) : (
@@ -140,7 +143,7 @@ export const NewsFilter = ({ posts, federations }: NewsFilterProps) => {
             <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <h3 className="mt-4 text-lg font-semibold text-gray-900">Nessun articolo trovato</h3>
+            <h3 className="mt-4 text-lg font-semibold text-gray-900">Nessun documento trovato</h3>
             <p className="mt-2 text-sm text-gray-600">
               Prova a cambiare i filtri o torna più tardi per nuovi contenuti.
             </p>
@@ -151,4 +154,4 @@ export const NewsFilter = ({ posts, federations }: NewsFilterProps) => {
   );
 };
 
-export default NewsFilter;
+export default DocumentFilter;

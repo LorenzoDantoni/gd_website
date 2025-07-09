@@ -15,7 +15,7 @@ export const revalidate = 60;
 const builder = imageUrlBuilder(client);
 
 const PostPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
+  const id = (await params).id;
 
   const post = await sanityFetch<SanityDocument>({ query: postQuery, params: { id } });
 
@@ -36,7 +36,7 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
             </h1>
 
             {/* Article Meta */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-white">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-white text-lg">
               {post?.federation && (
                 <div className="flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,7 +56,7 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  <time dateTime={post.publishedAt} className="text-sm font-medium">
+                  <time dateTime={post.publishedAt} className="font-medium">
                     {formattedDate}
                   </time>
                 </div>

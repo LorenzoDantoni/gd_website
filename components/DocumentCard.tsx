@@ -2,7 +2,7 @@
 
 import { SanityDocument } from "@sanity/client";
 import Link from "next/link";
-import { FileText, ExternalLink, Calendar } from "lucide-react";
+import { ExternalLink, Calendar } from "lucide-react";
 
 interface DocumentCardProps {
   document: SanityDocument;
@@ -16,12 +16,10 @@ const DocumentCard = ({ document }: DocumentCardProps) => {
       rel="noopener noreferrer"
       className="group block"
     >
-      <div className="bg-white border border-gray-200 rounded-lg p-3 hover:border-orange-500 hover:shadow-md transition-all duration-300 sm:p-4 sm:rounded-xl sm:hover:shadow-lg sm:hover:-translate-y-1">
+      <div className="bg-white shadow-md border border-gray-200 rounded-lg p-3 hover:border-orange-500 hover:shadow-md transition-all duration-300 sm:p-4 sm:rounded-xl sm:hover:shadow-lg sm:hover:-translate-y-1">
         <div className="space-y-2 sm:space-y-0 sm:flex sm:items-start sm:justify-between">
           <div className="flex items-start space-x-3 min-w-0 flex-1">
-            <div className="flex-shrink-0 w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300 sm:w-10 sm:h-10">
-              <FileText className="w-4 h-4 text-orange-500 group-hover:text-white transition-colors duration-300 sm:w-5 sm:h-5" />
-            </div>
+
 
             <div className="flex-1 min-w-0">
               <h3 className="text-base font-semibold text-gray-900 group-hover:text-orange-500 transition-colors duration-300 line-clamp-2 sm:text-lg sm:line-clamp-1">

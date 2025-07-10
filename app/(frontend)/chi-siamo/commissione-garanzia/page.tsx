@@ -1,9 +1,25 @@
 import Image from "next/image";
 import { commissioneGaranzia } from "@/data/commissione-garanzia";
-import { documentsCommissioneGaranzia } from "@/data/documents-commissione-garanzia";
-import { Scale, ShieldCheck, Users, Vote, Download } from "lucide-react";
+import { Scale, ShieldCheck, Users, Vote } from "lucide-react";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { SanityDocument } from "@sanity/client";
+import {
+  documentsByFederationQuery,
+  postsByFederationQuery,
+} from "@/sanity/lib/queries";
+import { LatestDocuments } from "@/components/LatestDocuments";
+import { News } from "@/components/News";
 
-export default function CommissioneGaranziaPage() {
+export default async function CommissioneGaranziaPage() {
+  const posts = await sanityFetch<SanityDocument[]>({
+    query: postsByFederationQuery,
+    params: { federation: "Commissione di Garanzia" },
+  });
+  const documents = await sanityFetch<SanityDocument[]>({
+    query: documentsByFederationQuery,
+    params: { federation: "Commissione di Garanzia" },
+  });
+
   return (
     <div>
       <header className="bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-lg min-h-[20vh] flex justify-center">
@@ -26,12 +42,11 @@ export default function CommissioneGaranziaPage() {
             <div className="bg-white rounded-xl shadow-lg p-8 lg:p-12 border border-gray-200/80">
               <div className="max-w-4xl mx-auto text-center">
                 <p className="text-xl text-gray-700">
-                  La Commissione di Garanzia è l'organo di giurisdizione
-                  interna del partito. È un organo collegiale, autonomo e
-                  indipendente, che ha il compito di vigilare sul rispetto
-                  dello Statuto, dei regolamenti e del Codice Etico da parte
-                  degli iscritti, degli organi di partito e dei
-                  rappresentanti istituzionali.
+                  La Commissione di Garanzia è l'organo di giurisdizione interna
+                  del partito. È un organo collegiale, autonomo e indipendente,
+                  che ha il compito di vigilare sul rispetto dello Statuto, dei
+                  regolamenti e del Codice Etico da parte degli iscritti, degli
+                  organi di partito e dei rappresentanti istituzionali.
                 </p>
                 <p className="mt-10 text-2xl font-bold text-gray-800">
                   Le sue funzioni principali includono:
@@ -69,6 +84,12 @@ export default function CommissioneGaranziaPage() {
           </div>
         </section>
 
+        <section className="bg-gray-200 py-16 sm:py-24">
+          <News posts={posts} title="Ultime News" subtitle="Commissione di Garanzia" />
+        </section>
+
+        <LatestDocuments documents={documents} backgroundColor="bg-gray-50" />
+
         {/* Sezione Membri */}
         <section className="bg-gray-200 py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -99,30 +120,6 @@ export default function CommissioneGaranziaPage() {
                   </p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Documents Section */}
-        <section className="bg-gray-50 py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Documenti Utili
-              </h2>
-            </div>
-            <div className="bg-white rounded-lg shadow-md p-8 border border-gray-300">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {documentsCommissioneGaranzia.map((doc) => (
-                  <a href={doc.link} key={doc.title} className="bg-gray-100 p-6 rounded-lg flex items-center justify-between border border-gray-200 hover:bg-gray-200 transition-colors group">
-                    <div>
-                      <p className="text-lg font-semibold text-gray-800 group-hover:text-orange-500">{doc.title}</p>
-                      <p className="text-gray-600">{doc.description}</p>
-                    </div>
-                    <Download className="h-8 w-8 text-orange-500" />
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
         </section>

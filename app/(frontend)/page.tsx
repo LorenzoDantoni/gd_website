@@ -13,7 +13,7 @@ export default async function Home() {
     <>
       <Hero />
       <section className="bg-gray-50 py-16 sm:py-24">
-        <News posts={posts} />
+        <News posts={posts} title="News & Eventi" subtitle="Resta aggiornato sulle nostre iniziative" />
       </section>
       <Organization />
     </>

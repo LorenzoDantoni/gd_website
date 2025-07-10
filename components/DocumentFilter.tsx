@@ -39,7 +39,7 @@ export const DocumentFilter = ({ documents, federations }: DocumentFilterProps) 
       {/* Modern Filter Section */}
       <div className="mb-8 sm:mb-12">
         {/* Mobile-first sticky filter bar */}
-        <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm">
+        <div className="sticky top-0 z-10 bg-white backdrop-blur-md border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
             {/* Federation Filter */}

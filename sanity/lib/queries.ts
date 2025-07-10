@@ -76,3 +76,14 @@ export const federationsQuery = groq`array::unique(*[_type == "post" && defined(
 
 // Get all distinct federations for documents
 export const documentFederationsQuery = groq`array::unique(*[_type == "documento" && defined(federation)].federation)`;
+
+// Get all documents by federation
+export const documentsByFederationQuery = groq`*[_type == "documento" && federation == $federation] | order(publishedAt desc)[0...4] {
+  _id,
+  _createdAt,
+  title,
+  slug,
+  federation,
+  publishedAt,
+  "fileURL": file.asset->url
+}`;

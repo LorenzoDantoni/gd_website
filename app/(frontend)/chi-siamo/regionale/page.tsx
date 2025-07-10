@@ -1,9 +1,30 @@
+import { User } from "lucide-react";
 import Image from "next/image";
-import { User, Download } from "lucide-react";
-import { assembleaRegionale, direzioneRegionale, segreteriaRegionale, vipRegionali } from "@/data/regionale";
-import { documentsRegionale } from "@/data/documents-regionale";
+import {
+  assembleaRegionale,
+  direzioneRegionale,
+  segreteriaRegionale,
+  vipRegionali,
+} from "@/data/regionale";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { SanityDocument } from "@sanity/client";
+import {
+  documentsByFederationQuery,
+  postsByFederationQuery,
+} from "@/sanity/lib/queries";
+import { LatestDocuments } from "@/components/LatestDocuments";
+import { News } from "@/components/News";
 
-export default function RegionalePage() {
+export default async function RegionalePage() {
+  const posts = await sanityFetch<SanityDocument[]>({
+    query: postsByFederationQuery,
+    params: { federation: "Regionale" },
+  });
+  const documents = await sanityFetch<SanityDocument[]>({
+    query: documentsByFederationQuery,
+    params: { federation: "Regionale" },
+  });
+
   return (
     <>
       <header className="bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-lg min-h-[20vh] flex justify-center">
@@ -15,7 +36,7 @@ export default function RegionalePage() {
       </header>
 
       <main>
-        {/* VIP Members */}
+        {/* Vip Section */}
         <section className="bg-gray-50 py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -44,8 +65,15 @@ export default function RegionalePage() {
           </div>
         </section>
 
-        {/* Segreteria Regionale */}
         <section className="bg-gray-200 py-16 sm:py-24">
+          <News posts={posts} title="Ultime News" subtitle="Regionale" />
+        </section>
+
+        {/* Documents Section */}
+        <LatestDocuments documents={documents} backgroundColor="bg-gray-50" />
+
+        {/* Segreteria Regionale */}
+        <section className="bg-gray-200 py-10 pt-20 sm:py-12 sm:pt-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-lg shadow-md p-8 border border-gray-300">
               <div className="text-center mb-8">
@@ -55,9 +83,14 @@ export default function RegionalePage() {
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                 {segreteriaRegionale.map((member) => (
-                  <div key={member.name} className="bg-gray-100 p-4 rounded-lg text-center flex items-center justify-center space-x-2">
+                  <div
+                    key={member.name}
+                    className="bg-gray-100 p-4 rounded-lg text-center flex items-center justify-center space-x-2"
+                  >
                     <User className="h-5 w-5 text-orange-500" />
-                    <p className="text-base font-medium text-gray-800">{member.name}</p>
+                    <p className="text-base font-medium text-gray-800">
+                      {member.name}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -66,7 +99,7 @@ export default function RegionalePage() {
         </section>
 
         {/* Direzione Regionale */}
-        <section className="bg-gray-50 py-16 sm:py-24">
+        <section className="bg-gray-200 py-10 sm:py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-lg shadow-md p-8 border border-gray-300">
               <div className="text-center mb-8">
@@ -76,9 +109,14 @@ export default function RegionalePage() {
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                 {direzioneRegionale.map((member) => (
-                  <div key={member.name} className="bg-gray-100 p-4 rounded-lg text-center flex items-center justify-center space-x-2">
+                  <div
+                    key={member.name}
+                    className="bg-gray-100 p-4 rounded-lg text-center flex items-center justify-center space-x-2"
+                  >
                     <User className="h-5 w-5 text-orange-500" />
-                    <p className="text-base font-medium text-gray-800">{member.name}</p>
+                    <p className="text-base font-medium text-gray-800">
+                      {member.name}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -87,7 +125,7 @@ export default function RegionalePage() {
         </section>
 
         {/* Assemblea Regionale */}
-        <section className="bg-gray-200 py-16 sm:py-24">
+        <section className="bg-gray-200 py-10 pb-20 sm:py-12 sm:pb-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-lg shadow-md p-8 border border-gray-300">
               <div className="text-center mb-8">
@@ -97,34 +135,15 @@ export default function RegionalePage() {
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {assembleaRegionale.map((member) => (
-                  <div key={member.name} className="bg-gray-100 p-4 rounded-lg text-center flex items-center justify-center space-x-2">
+                  <div
+                    key={member.name}
+                    className="bg-gray-100 p-4 rounded-lg text-center flex items-center justify-center space-x-2"
+                  >
                     <User className="h-5 w-5 text-orange-500" />
-                    <p className="text-base font-medium text-gray-800">{member.name}</p>
+                    <p className="text-base font-medium text-gray-800">
+                      {member.name}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Documents Section */}
-        <section className="bg-gray-50 py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Documenti Utili
-              </h2>
-            </div>
-            <div className="bg-white rounded-lg shadow-md p-8 border border-gray-300">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {documentsRegionale.map((doc) => (
-                  <a href={doc.link} key={doc.title} className="bg-gray-100 p-6 rounded-lg flex items-center justify-between border border-gray-200 hover:bg-gray-200 transition-colors group">
-                    <div>
-                      <p className="text-lg font-semibold text-gray-800 group-hover:text-orange-500">{doc.title}</p>
-                      <p className="text-gray-600">{doc.description}</p>
-                    </div>
-                    <Download className="h-8 w-8 text-orange-500" />
-                  </a>
                 ))}
               </div>
             </div>

@@ -13,7 +13,7 @@ interface DocumentsPageProps {
 }
 
 const DocumentsPage = async ({ searchParams }: DocumentsPageProps) => {
-  const { federation, sort } = searchParams;
+  const { federation, sort } = (await searchParams);
 
   const documents = await sanityFetch<SanityDocument[]>({ 
     query: documentsQuery(federation, sort),

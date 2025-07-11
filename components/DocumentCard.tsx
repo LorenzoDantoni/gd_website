@@ -2,7 +2,7 @@
 
 import { SanityDocument } from "@sanity/client";
 import Link from "next/link";
-import { ExternalLink, Calendar } from "lucide-react";
+import { ExternalLink, Calendar, Globe } from "lucide-react";
 
 interface DocumentCardProps {
   document: SanityDocument;
@@ -25,6 +25,11 @@ const DocumentCard = ({ document }: DocumentCardProps) => {
               <h3 className="text-base font-semibold text-gray-900 group-hover:text-orange-500 transition-colors duration-300 line-clamp-2 sm:text-lg sm:line-clamp-1">
                 {document.title}
               </h3>
+
+              <div className="flex items-center space-x-1 text-xs text-gray-500 mt-1 sm:text-sm sm:mt-2">
+                <Globe className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span>{document.federation}</span>
+              </div>
 
               <div className="flex items-center space-x-1 text-xs text-gray-500 mt-1 sm:text-sm sm:mt-2">
                 <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />

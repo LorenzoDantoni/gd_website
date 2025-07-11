@@ -415,6 +415,17 @@ export type FederationsQueryResult = Array<"Comm. Garanzia" | "Gorizia" | "Porde
 // Variable: documentFederationsQuery
 // Query: array::unique(*[_type == "documento" && defined(federation)].federation)
 export type DocumentFederationsQueryResult = Array<"Comm. Garanzia" | "Gorizia" | "Pordenone" | "Regionale" | "Trieste" | "Udine" | null>;
+// Variable: documentsByFederationQuery
+// Query: *[_type == "documento" && federation == $federation] | order(publishedAt desc)[0...4] {  _id,  _createdAt,  title,  slug,  federation,  publishedAt,  "fileURL": file.asset->url}
+export type DocumentsByFederationQueryResult = Array<{
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  slug: Slug | null;
+  federation: "Comm. Garanzia" | "Gorizia" | "Pordenone" | "Regionale" | "Trieste" | "Udine" | null;
+  publishedAt: string | null;
+  fileURL: string | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -425,5 +436,6 @@ declare module "@sanity/client" {
     "*[_type == \"post\" && federation == $federation] | order(publishedAt desc)[0...4] {\n  _id,\n  _createdAt,\n  title,\n  slug,\n  federation,\n  publishedAt,\n  mainImage,\n  \"imageURL\": mainImage.asset->url,\n  body\n}": PostsByFederationQueryResult;
     "array::unique(*[_type == \"post\" && defined(federation)].federation)": FederationsQueryResult;
     "array::unique(*[_type == \"documento\" && defined(federation)].federation)": DocumentFederationsQueryResult;
+    "*[_type == \"documento\" && federation == $federation] | order(publishedAt desc)[0...4] {\n  _id,\n  _createdAt,\n  title,\n  slug,\n  federation,\n  publishedAt,\n  \"fileURL\": file.asset->url\n}": DocumentsByFederationQueryResult;
   }
 }

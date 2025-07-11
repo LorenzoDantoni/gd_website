@@ -27,10 +27,10 @@ export default async function RegionalePage() {
 
   return (
     <>
-      <header className="bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-lg min-h-[20vh] flex justify-center">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 mt-8">
+      <header className="bg-gradient-to-br from-orange-400 to-orange-500 shadow-lg min-h-[20vh] flex items-center">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
-            Organizzazione Regionale (FVG)
+            Regionale (FVG)
           </h1>
         </div>
       </header>

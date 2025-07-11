@@ -20,6 +20,9 @@ export const NewsFilter = ({ posts, federations }: NewsFilterProps) => {
   const [sortOrder, setSortOrder] = useState(
     searchParams.get("sort") || "desc",
   );
+  const [searchTerm, setSearchTerm] = useState(
+    searchParams.get("search") || "",
+  );
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
@@ -28,101 +31,214 @@ export const NewsFilter = ({ posts, federations }: NewsFilterProps) => {
     } else {
       params.delete("federation");
     }
+    if (searchTerm) {
+      params.set("search", searchTerm);
+    } else {
+      params.delete("search");
+    }
     params.set("sort", sortOrder);
     router.push(`/news?${params.toString()}`);
-  }, [selectedFederation, sortOrder, searchParams, router]);
+  }, [selectedFederation, sortOrder, searchTerm, searchParams, router]);
+
+  const handleClearFilters = () => {
+    setSelectedFederation("");
+    setSearchTerm("");
+    setSortOrder("desc");
+  };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
-      {/* Modern Filter Section */}
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
       <div className="mb-8 sm:mb-12">
-        {/* Mobile-first sticky filter bar */}
-        <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative mb-6">
+          <div className="relative bg-white/90 rounded-3xl border-2 border-gray-400 shadow-xl overflow-hidden">
 
-            <div className="flex-1 sm:max-w-sm">
-              <label htmlFor="federation-filter" className="block text-sm font-semibold text-gray-900 mb-2">
-                Filtra per Federazione
-              </label>
-              <div className="relative">
-                <select
-                  id="federation-filter"
-                  name="federation-filter"
-                  className="block w-full pl-4 pr-10 py-3 text-sm bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 appearance-none hover:border-gray-400"
-                  value={selectedFederation}
-                  onChange={(e) => setSelectedFederation(e.target.value)}
-                >
-                  <option value="">Tutte le Federazioni</option>
-                  {federations.map((fed) => (
-                    <option key={fed} value={fed}>
-                      {fed}
-                    </option>
-                  ))}
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                  <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
+            {/* Filter Content */}
+            <div className="relative p-6 sm:p-8">
+              {/* Filter Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+                {/* Search Input - Takes more space */}
+                <div className="lg:col-span-6">
+                  <label
+                    htmlFor="search-filter"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    Cerca News
+                  </label>
+                  <div className="relative group">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+                      <svg
+                        className="h-5 w-5 text-gray-400 group-focus-within:text-orange-500 transition-colors duration-300"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <input
+                      id="search-filter"
+                      type="text"
+                      placeholder="Cerca per titolo"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="block w-full rounded-2xl border-2 border-gray-200 bg-white/80 py-3 pl-11 pr-4 text-sm placeholder:text-gray-500 focus:border-orange-500 focus:bg-white"
+                    />
+                  </div>
+                </div>
+
+                {/* Federation Filter */}
+                <div className="lg:col-span-3">
+                  <label
+                    htmlFor="federation-filter"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    Federazione
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="federation-filter"
+                      name="federation-filter"
+                      className="block w-full rounded-2xl border-2 border-gray-200 bg-white/80 py-3 pl-4 pr-10 text-sm focus:border-orange-500 focus:bg-white appearance-none cursor-pointer"
+                      value={selectedFederation}
+                      onChange={(e) => setSelectedFederation(e.target.value)}
+                    >
+                      <option value="">Tutte</option>
+                      {federations.map((fed) => (
+                        <option key={fed} value={fed}>
+                          {fed}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3">
+                      <svg
+                        className="h-4 w-4 text-gray-400"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sort Order Filter */}
+                <div className="lg:col-span-3">
+                  <label
+                    htmlFor="sort-order"
+                    className="block text-sm font-semibold text-gray-700 mb-2"
+                  >
+                    Ordina per
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="sort-order"
+                      name="sort-order"
+                      className="block w-full rounded-2xl border-2 border-gray-200 bg-white/80 py-3 pl-4 pr-10 text-sm focus:border-orange-500 focus:bg-white appearance-none cursor-pointer"
+                      value={sortOrder}
+                      onChange={(e) => setSortOrder(e.target.value)}
+                    >
+                      <option value="desc">Più Recenti</option>
+                      <option value="asc">Più Vecchi</option>
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3">
+                      <svg
+                        className="h-4 w-4 text-gray-400"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Results Summary and Active Filters */}
+              <div className="mt-6 pt-6 border-t border-gray-200/60">
+                <div className="flex items-center justify-between flex-wrap gap-3">
+                  {/* Active Filters */}
+                  <div className="flex items-center space-x-2">
+                    {selectedFederation && (
+                      <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-orange-100 to-amber-100 text-orange-800 ring-1 ring-orange-200/50 shadow-sm">
+                        <span className="mr-1">📍</span>
+                        {selectedFederation}
+                        <button
+                          onClick={() => setSelectedFederation("")}
+                          className="ml-1.5 -mr-1 flex-shrink-0 h-4 w-4 rounded-full inline-flex items-center justify-center text-orange-500 hover:bg-orange-200 hover:text-orange-600 focus:outline-none focus:bg-orange-500 focus:text-white transition-all duration-200 transform hover:scale-110"
+                        >
+                          <span className="sr-only">Rimuovi filtro</span>
+                          <svg
+                            className="h-2 w-2"
+                            stroke="currentColor"
+                            fill="none"
+                            viewBox="0 0 8 8"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeWidth="1.5"
+                              d="M1 1l6 6m0-6L1 7"
+                            />
+                          </svg>
+                        </button>
+                      </span>
+                    )}
+                    {searchTerm && (
+                      <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 ring-1 ring-blue-200/50 shadow-sm">
+                        <span className="mr-1">🔍</span>
+                        &#34;{searchTerm}&#34;
+                        <button
+                          onClick={() => setSearchTerm("")}
+                          className="ml-1.5 -mr-1 flex-shrink-0 h-4 w-4 rounded-full inline-flex items-center justify-center text-blue-500 hover:bg-blue-200 hover:text-blue-600 focus:outline-none focus:bg-blue-500 focus:text-white transition-all duration-200 transform hover:scale-110"
+                        >
+                          <span className="sr-only">Rimuovi filtro</span>
+                          <svg
+                            className="h-2 w-2"
+                            stroke="currentColor"
+                            fill="none"
+                            viewBox="0 0 8 8"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeWidth="1.5"
+                              d="M1 1l6 6m0-6L1 7"
+                            />
+                          </svg>
+                        </button>
+                      </span>
+                    )}
+                  </div>
+                  {/* Results Count */}
+                  <div className="flex items-center space-x-2">
+                    <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <p className="text-sm text-gray-600">
+                      <span className="font-semibold text-gray-900 text-lg">
+                        {posts.length}
+                      </span>
+                      <span className="ml-1">
+                        {posts.length === 1
+                          ? "risultato trovato"
+                          : "risultati trovati"}
+                      </span>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Sort Options */}
-            <div className="flex flex-col sm:items-end">
-              <span className="block text-sm font-semibold text-gray-900 mb-2">
-                Ordina per
-              </span>
-              <div className="flex rounded-xl border border-gray-300 bg-gray-50 p-1">
-                <button
-                  type="button"
-                  className={`flex-1 inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    sortOrder === "desc"
-                      ? "bg-orange-500 text-white shadow-sm"
-                      : "text-gray-700 hover:text-gray-900 hover:bg-white"
-                  }`}
-                  onClick={() => setSortOrder("desc")}
-                >
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                  </svg>
-                  Più Recenti
-                </button>
-                <button
-                  type="button"
-                  className={`flex-1 inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    sortOrder === "asc"
-                      ? "bg-orange-500 text-white shadow-sm"
-                      : "text-gray-700 hover:text-gray-900 hover:bg-white"
-                  }`}
-                  onClick={() => setSortOrder("asc")}
-                >
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                  </svg>
-                  Più Vecchi
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Results count */}
-          <div className="mt-4 pt-4 border-t border-gray-200">
-            <p className="text-sm text-gray-600">
-              {posts.length} {posts.length === 1 ? 'articolo trovato' : 'articoli trovati'}
-              {selectedFederation && (
-                <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
-                  {selectedFederation}
-                  <button
-                    onClick={() => setSelectedFederation("")}
-                    className="ml-1.5 inline-flex items-center justify-center w-4 h-4 rounded-full text-orange-600 hover:bg-orange-200 hover:text-orange-700 transition-colors"
-                  >
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </span>
-              )}
-            </p>
           </div>
         </div>
       </div>
@@ -136,14 +252,19 @@ export const NewsFilter = ({ posts, federations }: NewsFilterProps) => {
         </div>
       ) : (
         <div className="text-center py-12">
-          <div className="mx-auto max-w-md">
-            <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            <h3 className="mt-4 text-lg font-semibold text-gray-900">Nessun articolo trovato</h3>
-            <p className="mt-2 text-sm text-gray-600">
+          <div className="mx-auto max-w-xl">
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 tracking-tight">
+              Nessun articolo trovato
+            </h3>
+            <p className="text-gray-600 text-base sm:text-lg mb-4 max-w-xl leading-relaxed">
               Prova a cambiare i filtri o torna più tardi per nuovi contenuti.
             </p>
+            <button
+              onClick={handleClearFilters}
+              className="inline-block rounded-full bg-orange-500 px-8 py-3 text-base font-semibold text-white shadow-md transition-all duration-300 hover:bg-orange-500 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+            >
+              Rimuovi tutti i filtri
+            </button>
           </div>
         </div>
       )}

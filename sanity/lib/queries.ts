@@ -1,8 +1,20 @@
 import { groq } from "next-sanity";
 
 // Get all posts with optional filtering and sorting
-export const postsQuery = (federation?: string, sort: string = "desc") => {
-  const filter = federation ? `&& federation == "${federation}"` : "";
+export const postsQuery = (
+  federation?: string,
+  sort: string = "desc",
+  search?: string,
+) => {
+  const filters = [];
+  if (federation) {
+    filters.push(`federation == "${federation}"`);
+  }
+  if (search) {
+    filters.push(`title match "*${search}*"`);
+  }
+
+  const filter = filters.length > 0 ? `&& ${filters.join(" && ")}` : "";
 
   return groq`*[_type == "post" ${filter}] | order(publishedAt ${sort}) {
     _id,
@@ -18,8 +30,19 @@ export const postsQuery = (federation?: string, sort: string = "desc") => {
 };
 
 // Get all documents with optional filtering and sorting
-export const documentsQuery = (federation?: string, sort: string = "desc") => {
-  const filter = federation ? `&& federation == "${federation}"` : "";
+export const documentsQuery = (
+  federation?: string,
+  sort: string = "desc",
+  search?: string,
+) => {
+  const filters = [];
+  if (federation) {
+    filters.push(`federation == "${federation}"`);
+  }
+  if (search) {
+    filters.push(`title match "*${search}*"`);
+  }
+  const filter = filters.length > 0 ? `&& ${filters.join(" && ")}` : "";
 
   return groq`*[_type == "documento" ${filter}] | order(publishedAt ${sort}) {
     _id,

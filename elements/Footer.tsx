@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -143,13 +143,6 @@ export default function Footer() {
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center justify-center w-10 h-10 bg-gray-700 hover:bg-orange-600 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-                  aria-label="Seguici su X (Twitter)"
-                >
-                  <Twitter className="w-5 h-5" />
-                </a>
               </div>
             </div>
 
@@ -220,14 +213,14 @@ export default function Footer() {
               className="flex items-center gap-4 text-sm justify-center sm:justify-end"
             >
               <Link
-                href="/privacy-policy"
+                href="/"
                 className="text-gray-400 hover:text-orange-500 transition-colors duration-200 focus:outline-none focus:text-orange-500"
               >
                 Privacy Policy
               </Link>
               <span className="text-gray-500">•</span>
               <Link
-                href="/cookie-policy"
+                href="/"
                 className="text-gray-400 hover:text-orange-500 transition-colors duration-200 focus:outline-none focus:text-orange-500"
               >
                 Cookie Policy

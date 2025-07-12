@@ -22,7 +22,7 @@ const DocumentCard = ({ document }: DocumentCardProps) => {
 
 
             <div className="flex-1 min-w-0">
-              <h3 className="text-base font-semibold text-gray-900 group-hover:text-orange-500 transition-colors duration-300 line-clamp-2 sm:text-lg sm:line-clamp-1">
+              <h3 className="text-base font-semibold text-gray-900 group-hover:text-orange-500 transition-colors duration-300 line-clamp-2 sm:text-lg sm:line-clamp-2">
                 {document.title}
               </h3>
 

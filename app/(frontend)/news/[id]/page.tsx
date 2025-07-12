@@ -10,6 +10,7 @@ import { format } from "date-fns";
 import { it } from "date-fns/locale";
 import Link from "next/link";
 import { CalendarDays, MapPin } from "lucide-react";
+import DocumentCard from "@/components/DocumentCard";
 
 export const revalidate = 60;
 const builder = imageUrlBuilder(client);
@@ -17,7 +18,10 @@ const builder = imageUrlBuilder(client);
 const PostPage = async ({ params }: { params: { id: string } }) => {
   const id = (await params).id;
 
-  const post = await sanityFetch<SanityDocument>({ query: postQuery, params: { id } });
+  const post = await sanityFetch<SanityDocument>({
+    query: postQuery,
+    params: { id },
+  });
 
   if (!post) return notFound();
 
@@ -39,9 +43,24 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-white text-lg">
               {post?.federation && (
                 <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
                   </svg>
                   <span className="font-medium">{post.federation}</span>
                 </div>
@@ -53,8 +72,18 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
 
               {formattedDate && (
                 <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
                   </svg>
                   <time dateTime={post.publishedAt} className="font-medium">
                     {formattedDate}
@@ -69,15 +98,25 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
       {/* Main Content */}
       <main className="bg-gray-50">
         <article className="mx-auto max-w-4xl">
-          {/* Featured Image */}
-          {post?.mainImage && (
-            <div className="mt-16 relative w-full h-64 sm:h-80 md:h-96 overflow-hidden">
-              <Image
-                src={builder.image(post.mainImage).url()}
-                alt={post?.mainImage?.alt || "Article image"}
-                fill
-                className="object-cover"
-              />
+          {/* Featured Image - Option 1: Responsive with aspect ratio */}
+          {post?.postImage && (
+            <div className="mt-16 px-4 sm:px-6 lg:px-8">
+              <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-lg">
+                <Image
+                  src={builder
+                    .image(post.postImage)
+                    .width(1200)
+                    .height(675)
+                    .fit("crop")
+                    .crop("center")
+                    .url()}
+                  alt={post?.postImage?.alt || "Article image"}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  priority
+                />
+              </div>
             </div>
           )}
 
@@ -87,6 +126,20 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
               {post?.body ? <PortableText value={post.body} /> : null}
             </div>
           </div>
+
+          {/* Documents Section */}
+          {post?.documents && post.documents.length > 0 && (
+            <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8 bg-gray-200 shadow-md rounded-lg mt-8">
+              <h2 className="text-center text-3xl font-bold text-gray-900 mb-6">
+                Documenti Allegati
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {post.documents.map((doc: SanityDocument) => (
+                  <DocumentCard key={doc._id} document={doc} />
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Article Actions */}
           <footer className="border-t border-gray-200 px-4 py-8 sm:px-6 lg:px-8">
@@ -138,6 +191,8 @@ const PostPage = async ({ params }: { params: { id: string } }) => {
             </div>
           </footer>
         </article>
+
+
       </main>
     </>
   );

@@ -23,13 +23,21 @@ export const postsQuery = (
     slug,
     federation,
     publishedAt,
-    mainImage,
-    "imageURL": mainImage.asset->url,
-    body
+    cardImage,
+    postImage,
+    "cardImageURL": cardImage.asset->url,
+    "postImageURL": postImage.asset->url,
+    body,
+    documents[]->{
+      _id,
+      title,
+      "fileURL": file.asset->url,
+      federation,
+      publishedAt
+    }
   }`;
 };
 
-// Get all documents with optional filtering and sorting
 export const documentsQuery = (
   federation?: string,
   sort: string = "desc",
@@ -63,12 +71,20 @@ export const postQuery = groq`*[_type == "post" && _id == $id][0]{
   slug,
   federation,
   publishedAt,
-  mainImage,
-  "imageURL": mainImage.asset->url,
-  body
+  cardImage,
+  postImage,
+  "cardImageURL": cardImage.asset->url,
+  "postImageURL": postImage.asset->url,
+  body,
+  documents[]->{
+    _id,
+    title,
+    "fileURL": file.asset->url,
+    federation,
+    publishedAt
+  }
 }`;
 
-// Get the last 4 posts sorted by date
 export const lastPostsQuery = groq`*[_type == "post"] | order(publishedAt desc)[0...4] {
   _id,
   _createdAt,
@@ -76,9 +92,18 @@ export const lastPostsQuery = groq`*[_type == "post"] | order(publishedAt desc)[
   slug,
   federation,
   publishedAt,
-  mainImage,
-  "imageURL": mainImage.asset->url,
-  body
+  cardImage,
+  postImage,
+  "cardImageURL": cardImage.asset->url,
+  "postImageURL": postImage.asset->url,
+  body,
+  documents[]->{
+    _id,
+    title,
+    "fileURL": file.asset->url,
+    federation,
+    publishedAt
+  }
 }`;
 
 // Get all posts by federation
@@ -89,9 +114,18 @@ export const postsByFederationQuery = groq`*[_type == "post" && federation == $f
   slug,
   federation,
   publishedAt,
-  mainImage,
-  "imageURL": mainImage.asset->url,
-  body
+  cardImage,
+  postImage,
+  "cardImageURL": cardImage.asset->url,
+  "postImageURL": postImage.asset->url,
+  body,
+  documents[]->{
+    _id,
+    title,
+    "fileURL": file.asset->url,
+    federation,
+    publishedAt
+  }
 }`;
 
 // Get all distinct federations

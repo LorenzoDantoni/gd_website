@@ -17,14 +17,16 @@ const PostCard = ({ post }: { post: SanityDocument }) => {
       key={post._id}
       className="group flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
     >
-      <div className="relative overflow-hidden aspect-[16/9]">
-        <Image
-          src={post.mainImage ? builder.image(post.mainImage).url() : "/images/logo_gd_temp.jpg"}
-          alt={post?.mainImage?.alt || "Default Image"}
-          fill
-          className="object-cover"
-        />
-      </div>
+      {post.cardImage && (
+        <div className="relative overflow-hidden aspect-[16/9]">
+          <Image
+            src={builder.image(post.cardImage).url()}
+            alt={post?.cardImage?.alt}
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
 
       {/* Card Content */}
       <div className="flex flex-1 flex-col justify-between p-6">

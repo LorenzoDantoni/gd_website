@@ -18,7 +18,18 @@ export const Navbar = () => {
 
   // The main navigation links
   const menuItems = [
-    { href: "/chi-siamo", label: "Chi Siamo" },
+    {
+      href: "/chi-siamo",
+      label: "Chi Siamo",
+      submenu: [
+        { href: "/chi-siamo/regionale", label: "Regionale" },
+        { href: "/chi-siamo/commissione-garanzia", label: "Commissione di Garanzia" },
+        { href: "/chi-siamo/udine", label: "Udine" },
+        { href: "/chi-siamo/pordenone", label: "Pordenone" },
+        { href: "/chi-siamo/trieste", label: "Trieste" },
+        { href: "/chi-siamo/gorizia", label: "Gorizia" },
+      ],
+    },
     { href: "/news", label: "News" },
     { href: "/iscriviti", label: "Iscriviti" },
     { href: "/documenti", label: "Documenti" },
@@ -86,13 +97,29 @@ export const Navbar = () => {
           {/* Desktop Navigation Links */}
           <div className="flex items-center gap-x-8 ml-3">
             {menuItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="relative px-3 py-2 text-lg transition-colors duration-300 hover:text-orange-400 group"
-              >
-                {item.label}
-              </Link>
+              <div key={item.href} className="relative group">
+                <Link
+                  href={item.href}
+                  className="relative px-3 py-2 text-lg transition-colors duration-300 hover:text-orange-400"
+                >
+                  {item.label}
+                </Link>
+                {item.submenu && (
+                  <div className="absolute left-0 mt-1 w-56 bg-white shadow-lg rounded-lg border border-gray-200 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
+                    <div className="py-2">
+                      {item.submenu.map((subItem) => (
+                        <Link
+                          key={subItem.href}
+                          href={subItem.href}
+                          className="block px-4 py-3 text-md text-gray-700 hover:bg-gray-50 hover:text-orange-400 transition-colors duration-150"
+                        >
+                          {subItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -106,14 +133,15 @@ export const Navbar = () => {
         <div className="lg:hidden" id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
             {menuItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-                className="block rounded-md px-3 py-2 text-lg text-center text-gray-700 hover:bg-orange-50 hover:text-orange-400"
-              >
-                {item.label}
-              </Link>
+              <div key={item.href}>
+                <Link
+                  href={item.href}
+                  onClick={closeMenu}
+                  className="block rounded-md px-3 py-2 text-lg text-center text-gray-700 hover:bg-orange-50 hover:text-orange-400"
+                >
+                  {item.label}
+                </Link>
+              </div>
             ))}
           </div>
         </div>

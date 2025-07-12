@@ -21,7 +21,24 @@ export const postType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "mainImage",
+      name: "cardImage",
+      title: "Card Image (required)",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+        }),
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "postImage",
+      title: "Post Content Image (optional)",
       type: "image",
       options: {
         hotspot: true,
@@ -66,12 +83,18 @@ export const postType = defineType({
       type: "blockContent",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "documents",
+      title: "Documents",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "documento" }] }],
+    }),
   ],
   preview: {
     select: {
       title: "title",
       federation: "federation",
-      media: "mainImage",
+      media: "cardImage",
       publishedAt: "publishedAt",
     },
     prepare(selection) {

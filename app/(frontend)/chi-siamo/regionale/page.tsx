@@ -14,6 +14,8 @@ import {
 } from "@/sanity/lib/queries";
 import { LatestDocuments } from "@/components/LatestDocuments";
 import { News } from "@/components/News";
+import { contatti } from "@/data/contatti";
+import ContactCard from "@/components/ContactCard";
 
 export default async function RegionalePage() {
   const posts = await sanityFetch<SanityDocument[]>({
@@ -146,6 +148,22 @@ export default async function RegionalePage() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contatti Section */}
+        <section className="bg-gray-50 py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Contatti
+              </h2>
+            </div>
+            <div className="max-w-lg mx-auto">
+              <ContactCard
+                {...contatti.find((c) => c.federation === "Regionale")}
+              />
             </div>
           </div>
         </section>

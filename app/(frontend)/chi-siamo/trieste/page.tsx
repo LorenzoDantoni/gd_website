@@ -15,6 +15,8 @@ import {
   documentsByFederationQuery,
 } from "@/sanity/lib/queries";
 import { LatestDocuments } from "@/components/LatestDocuments";
+import ContactCard from "@/components/ContactCard";
+import { contatti } from "@/data/contatti";
 
 export default async function TriestePage() {
   const posts = await sanityFetch<SanityDocument[]>({
@@ -28,8 +30,8 @@ export default async function TriestePage() {
 
   return (
     <>
-      <header className="bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-lg min-h-[20vh] flex justify-center">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 mt-8">
+      <header className="bg-gradient-to-br from-orange-400 to-orange-500 shadow-lg min-h-[20vh] flex items-center">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
             Federazione di Trieste
           </h1>
@@ -58,6 +60,20 @@ export default async function TriestePage() {
           direzioneProvincialeMembers={direzioneProvincialeTrieste}
           assembleaProvincialeMembers={assembleaProvincialeTrieste}
         />
+
+        {/* Contatti Section */}
+        <section className="bg-gray-200 py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Contatti
+              </h2>
+            </div>
+            <div className="max-w-lg mx-auto">
+              <ContactCard {...contatti.find(c => c.federation === 'Trieste')} />
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );

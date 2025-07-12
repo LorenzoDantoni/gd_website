@@ -128,7 +128,7 @@ const IscrivitiPage = () => {
             <div className="bg-gray-50 rounded-lg shadow-2xl border border-gray-100">
               <div className="p-8 md:p-12">
                 {/* Current Process */}
-                <div className="bg-orange-50 rounded-lg p-6 border-l-4 border-orange-500 mb-10">
+                <div className="bg-orange-100 rounded-lg p-6 border-l-4 border-orange-500 mb-10">
                   <div className="text-center">
                     <div className="ml-4">
                       {/*<h3 className="text-xl font-semibold text-gray-900 mb-2">Processo Attuale</h3>*/}
@@ -155,7 +155,7 @@ const IscrivitiPage = () => {
                 {/* Steps */}
                 <div className="mb-10">
                   <div className="flex items-start px-18">
-                    <div className="flex-shrink-0 mt-3">
+                    <div className="flex-shrink-0 mt-4">
                       <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
                         <span className="text-white font-semibold text-lg">
                           ✔
@@ -169,7 +169,7 @@ const IscrivitiPage = () => {
                         <span className="font-semibold">PD</span> cliccando il
                         link qui sotto e spunta la casella{" "}
                         <span className="italic">
-                          &#34;Voglio essere iscritto ai Giovani Democratici"
+                          &#34;Voglio essere iscritto ai Giovani Democratici&#34;
                         </span>{" "}
                         per tesserarti automaticamente ai Giovani Democratici.
                       </p>
@@ -178,7 +178,7 @@ const IscrivitiPage = () => {
                 </div>
 
                 {/* CTA */}
-                <div className="text-center bg-gradient-to-r from-orange-50 to-orange-100 rounded-lg p-8">
+                <div className="text-center bg-orange-100 rounded-lg p-8">
                   <div className="mb-6">
                     <h3 className="text-2xl font-semibold text-gray-900 mb-2">
                       Pronto a Iniziare?
@@ -207,7 +207,7 @@ const IscrivitiPage = () => {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="rounded-lg p-8 md:p-12 text-center">
               <h2 className="text-3xl font-bold text-gray-900 mb-4 md:text-4xl">
-                Hai Domande?
+                Hai domande?
               </h2>
               <p className="text-lg text-gray-600 mb-8 max-w-4xl mx-auto">
                 Per qualsiasi dubbio, informazione aggiuntiva

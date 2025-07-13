@@ -1,12 +1,12 @@
 export const contatti = [
   {
     federation: 'Regionale',
-    address: 'Via Roma, 1, 34121 Trieste TS',
+    address: 'Sede itinerante',
     email: 'giovanidemocraticifvg@gmail.com',
-    facebook: 'https://www.facebook.com/regionale',
+    facebook: 'https://www.facebook.com/gdemfvg/',
     instagram: 'https://www.instagram.com/regionale',
-    facebookTag: '@regionale',
-    instagramTag: '@regionale',
+    facebookTag: 'Giovani Democratici FVG',
+    instagramTag: '@gdemfvg',
   },
   {
     federation: 'Trieste',

@@ -26,7 +26,7 @@ export const Organization = () => {
         {/* Regional & Guarantee Commission Cards */}
         <div className="mt-20 flex flex-col lg:flex-row justify-center gap-12 lg:gap-8">
           {/* Regional Card */}
-          <div className="relative w-full max-w-xl rounded-[30px] border border-orange-400 bg-gray-100 p-10 shadow-lg text-center transition-all duration-300 hover:scale-105 hover:border-black hover:shadow-orange-500/30">
+          <div className="relative w-full lg:max-w-xl rounded-[30px] border border-orange-400 bg-gray-100 p-10 shadow-lg text-center transition-all duration-300 hover:scale-105 hover:border-black hover:shadow-orange-500/30">
             <div className="absolute -top-6 left-1/2 -translate-x-1/2 transform">
               <div className="rounded-full bg-orange-500 p-3 shadow-md text-white">
                 <Star size={32} />
@@ -48,7 +48,7 @@ export const Organization = () => {
           </div>
 
           {/* Commissione di Garanzia Card */}
-          <div className="relative w-full max-w-xl rounded-[30px] border border-orange-400 bg-gray-100 p-10 shadow-lg text-center transition-all duration-300 hover:scale-105 hover:border-black hover:shadow-orange-500/30">
+          <div className="relative w-full lg:max-w-xl rounded-[30px] border border-orange-400 bg-gray-100 p-10 shadow-lg text-center transition-all duration-300 hover:scale-105 hover:border-black hover:shadow-orange-500/30">
             <div className="absolute -top-6 left-1/2 -translate-x-1/2 transform">
               <div className="rounded-full bg-orange-500 p-3 shadow-md text-white">
                 <Shield size={32} />

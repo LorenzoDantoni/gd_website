@@ -1,26 +1,26 @@
 export const vipRegionali = [
   {
-    name: "Mario Rossi",
+    name: "Ferdinando Santoro",
     role: "Segretario",
-    imageUrl: "/images/placeholder-person.png",
+    imageUrl: "/images/ferdinando_santoro.jpg",
     bio: "",
   },
   {
-    name: "Laura Bianchi",
+    name: "Manuel Pilotto",
     role: "Presidente",
-    imageUrl: "/images/placeholder-person.png",
+    imageUrl: "/images/manuel_pilotto.jpg",
     bio: "",
   },
   {
-    name: "Simone Verdi",
+    name: "Lorenzo D'Antoni",
     role: "Tesoriere",
-    imageUrl: "/images/placeholder-person.png",
+    imageUrl: "/images/lorenzo_dantoni.jpg",
     bio: "",
   },
   {
-    name: "Giulia Neri",
+    name: "Emma Ferrari",
     role: "Responsabile Organizzazione",
-    imageUrl: "/images/placeholder-person.png",
+    imageUrl: "/images/emma_ferrari.jpg",
     bio: "",
   },
 ];

@@ -6,22 +6,25 @@ import DocumentFilter from "@/components/DocumentFilter";
 export const revalidate = 60;
 
 interface DocumentsPageProps {
-  searchParams: {
+  searchParams: Promise<{
     federation?: string;
     sort?: string;
     search?: string;
-  };
+  }>;
 }
 
 const DocumentsPage = async ({ searchParams }: DocumentsPageProps) => {
-  const { federation, sort, search } = (await searchParams);
+  const params = await searchParams;
+  const { federation, sort, search } = params;
 
-  const documents = await sanityFetch<SanityDocument[]>({ 
+  const documents = await sanityFetch<SanityDocument[]>({
     query: documentsQuery(federation, sort, search),
     params: federation ? { federation } : undefined,
   });
 
-  const federations = await sanityFetch<string[]>({ query: documentFederationsQuery });
+  const federations = await sanityFetch<string[]>({
+    query: documentFederationsQuery,
+  });
 
   return (
     <>

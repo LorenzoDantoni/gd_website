@@ -6,15 +6,16 @@ import NewsFilter from "@/components/NewsFilter";
 export const revalidate = 60;
 
 interface NewsPageProps {
-  searchParams: {
+  searchParams: Promise<{
     federation?: string;
     sort?: string;
     search?: string;
-  };
+  }>;
 }
 
 const NewsPage = async ({ searchParams }: NewsPageProps) => {
-  const { federation, sort, search } = (await searchParams);
+  const params = await searchParams;
+  const { federation, sort, search } = params;
 
   const posts = await sanityFetch<SanityDocument[]>({
     query: postsQuery(federation, sort, search),

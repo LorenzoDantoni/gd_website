@@ -122,14 +122,14 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
           {/* Article Content */}
           <div className="px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-            <div className="prose prose-lg max-w-none">
+            <div className="prose prose-lg max-w-none prose-gray marker:text-gray-500">
               {post?.body ? <PortableText value={post.body} /> : null}
             </div>
           </div>
 
           {/* Documents Section */}
           {post?.documents && post.documents.length > 0 && (
-            <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8 bg-gray-200 shadow-md rounded-lg mt-8">
+            <section className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8 bg-gray-200 shadow-md rounded-lg">
               <h2 className="text-center text-3xl font-bold text-gray-900 mb-6">
                 Documenti Allegati
               </h2>
@@ -142,7 +142,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
           )}
 
           {/* Article Actions */}
-          <footer className="border-t border-gray-200 px-4 py-8 sm:px-6 lg:px-8">
+          <footer className=" mt-14 border-t border-gray-200 px-4 py-8 sm:px-6 lg:px-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-gray-600">
                 {post?.federation && (

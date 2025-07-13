@@ -45,7 +45,7 @@ export default function ChiSiamoPage() {
                 Le nostre radici
               </h2>
               <p className="text-gray-700 leading-relaxed">
-                <span className="font-semibold">Giovani Democratici (GD)</span>
+                <span className="font-semibold">Giovani Democratici (GD) </span>
                 è l&#39;organizzazione giovanile del Partito Democratico che
                 accoglie gli iscritti fino ai 30 anni. È nata nel 2008 dalla
                 fusione tra Sinistra Giovanile (giovanile dei Democratici di

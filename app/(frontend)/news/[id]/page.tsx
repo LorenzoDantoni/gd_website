@@ -15,8 +15,8 @@ import DocumentCard from "@/components/DocumentCard";
 export const revalidate = 60;
 const builder = imageUrlBuilder(client);
 
-const PostPage = async ({ params }: { params: { id: string } }) => {
-  const id = (await params).id;
+const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
 
   const post = await sanityFetch<SanityDocument>({
     query: postQuery,

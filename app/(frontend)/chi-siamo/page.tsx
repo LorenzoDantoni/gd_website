@@ -46,7 +46,7 @@ export default function ChiSiamoPage() {
               </h2>
               <p className="text-gray-700 leading-relaxed">
                 <span className="font-semibold">Giovani Democratici (GD)</span>
-                è l'organizzazione giovanile del Partito Democratico che
+                è l&#39;organizzazione giovanile del Partito Democratico che
                 accoglie gli iscritti fino ai 30 anni. È nata nel 2008 dalla
                 fusione tra Sinistra Giovanile (giovanile dei Democratici di
                 Sinistra) e i Giovani della Margherita.
@@ -114,7 +114,7 @@ export default function ChiSiamoPage() {
                     Commissione di Garanzia
                   </h2>
                   <p className="mt-2 text-gray-600">
-                    L'organo che vigila sul rispetto dello Statuto e dei
+                    L&#39;organo che vigila sul rispetto dello Statuto e dei
                     regolamenti.
                   </p>
                 </div>

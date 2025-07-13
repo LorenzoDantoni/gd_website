@@ -42,7 +42,7 @@ export default async function CommissioneGaranziaPage() {
             <div className="bg-white rounded-xl shadow-lg p-8 lg:p-12 border border-gray-200/80">
               <div className="max-w-4xl mx-auto text-center">
                 <p className="text-xl text-gray-700">
-                  La Commissione di Garanzia è l'organo di giurisdizione interna
+                  La Commissione di Garanzia è l&#39;organo di giurisdizione interna
                   del partito. È un organo collegiale, autonomo e indipendente,
                   che ha il compito di vigilare sul rispetto dello Statuto, dei
                   regolamenti e del Codice Etico da parte degli iscritti, degli

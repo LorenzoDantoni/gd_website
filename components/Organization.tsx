@@ -36,7 +36,7 @@ export const Organization = () => {
               Regionale
             </h3>
             <p className="mt-4 text-lg text-gray-700">
-              Il cuore pulsante dell'organizzazione, che coordina le attività e
+              Il cuore pulsante dell&#39;organizzazione, che coordina le attività e
               definisce la linea politica in Friuli Venezia Giulia.
             </p>
             <Link
@@ -58,8 +58,8 @@ export const Organization = () => {
               Commissione di Garanzia
             </h3>
             <p className="mt-4 text-lg text-gray-700">
-              L'organo che vigila sullo Statuto e il corretto funzionamento
-              dell'organizzazione, garantendo i diritti degli iscritti.
+              L&#39;organo che vigila sullo Statuto e il corretto funzionamento
+              dell&#39;organizzazione, garantendo i diritti degli iscritti.
             </p>
             <Link
               href="/app/(frontend)/chi-siamo/commissione-garanzia"

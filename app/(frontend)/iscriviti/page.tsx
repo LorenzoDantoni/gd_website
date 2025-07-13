@@ -141,7 +141,7 @@ const IscrivitiPage = () => {
                         <span className="font-semibold">
                           Partito Democratico
                         </span>
-                        . L&#39;iscrizione ti garantisce
+                        . <br/>L&#39;iscrizione ti garantisce
                         <span className="font-semibold">
                           {" "}
                           pieni diritti
@@ -153,9 +153,9 @@ const IscrivitiPage = () => {
                 </div>
 
                 {/* Steps */}
-                <div className="mb-10">
-                  <div className="flex items-start px-18">
-                    <div className="flex-shrink-0 mt-4">
+                <div className="flex justify-center mb-10">
+                  <div className="flex items-center px-22 max-w-3xl">
+                    <div className="flex-shrink-0">
                       <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
                         <span className="text-white font-semibold text-lg">
                           ✔
@@ -167,7 +167,7 @@ const IscrivitiPage = () => {
                       <p className="text-gray-700 text-lg">
                         Compila il modulo di iscrizione al{" "}
                         <span className="font-semibold">PD</span> cliccando il
-                        link qui sotto e spunta la casella{" "}
+                        link qui sotto. Spunta la casella{" "}
                         <span className="italic">
                           &#34;Voglio essere iscritto ai Giovani Democratici&#34;
                         </span>{" "}

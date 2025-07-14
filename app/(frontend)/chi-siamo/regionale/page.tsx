@@ -68,7 +68,7 @@ export default async function RegionalePage() {
         </section>
 
         <section className="bg-gray-200 py-16 sm:py-24">
-          <News posts={posts} title="Ultime News" subtitle="Regionale" />
+          <News posts={posts} title="Ultime News" subtitle="" />
         </section>
 
         {/* Documents Section */}

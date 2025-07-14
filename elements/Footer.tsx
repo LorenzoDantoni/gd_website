@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaEnvelope, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { FooterSection } from "./FooterSection";
 import { SocialLink } from "./SocialLink";
 
@@ -20,13 +20,13 @@ const federations = [
 ];
 
 const externalLinks = [
-  { href: "https://www.partitodemocraticofvg.it/", label: "PD FVG 🠖", isExternal: true },
+  { href: "https://www.pdfvg.it/", label: "PD FVG 🠖", isExternal: true },
   { href: "https://www.partitodemocratico.it/", label: "PD Nazionale 🠖", isExternal: true },
 ];
 
 const socialLinks = [
-  { href: "#", 'aria-label': "Seguici su Facebook", icon: <FaFacebook size={25} /> },
-  { href: "#", 'aria-label': "Seguici su Instagram", icon: <FaInstagram size={25} /> },
+  { href: "https://www.facebook.com/gdemfvg", 'aria-label': "Seguici su Facebook", icon: <FaFacebook size={25} /> },
+  { href: "https://www.instagram.com/regionale", 'aria-label': "Seguici su Instagram", icon: <FaInstagram size={25} /> },
 ];
 
 export default function Footer() {
@@ -80,6 +80,24 @@ export default function Footer() {
             </div>
 
             <FooterSection title="Link Esterni" links={externalLinks} />
+          </div>
+        </div>
+
+        {/* Contact Info Section */}
+        <div className="py-6">
+          <div className="flex flex-col sm:flex-row justify-start gap-4 sm:gap-8 text-gray-400 text-sm">
+            {/*<div className="flex items-center gap-2">*/}
+            {/*  <FaMapMarkerAlt className="text-white" />*/}
+            {/*  <span>Via Roma, 1, 33100 Udine UD</span>*/}
+            {/*</div>*/}
+            <div className="flex items-center gap-2">
+              <FaEnvelope className="text-gray-400" />
+              <a href="mailto:giovanidemocraticifvg@gmail.com" className="hover:text-orange-500 transition-colors duration-200">giovanidemocraticifvg@gmail.com</a>
+            </div>
+            {/*<div className="flex items-center gap-2">*/}
+            {/*  <FaPhone className="text-white" />*/}
+            {/*  <a href="tel:+390432000000" className="hover:text-orange-500 transition-colors duration-200">+39 0432 000000</a>*/}
+            {/*</div>*/}
           </div>
         </div>
 

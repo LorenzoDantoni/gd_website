@@ -59,7 +59,7 @@ export const Navbar = () => {
                   className="object-contain"
                 />
               </div>
-              <span className="text-xl font-semibold text-gray-900">GD FVG</span>
+              <span className="text-xl font-semibold text-gray-900">Giovani Democratici FVG</span>
             </Link>
           </div>
 

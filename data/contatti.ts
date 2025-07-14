@@ -6,7 +6,7 @@ export const contatti = [
     facebook: 'https://www.facebook.com/gdemfvg/',
     instagram: 'https://www.instagram.com/regionale',
     facebookTag: 'Giovani Democratici FVG',
-    instagramTag: '@gdemfvg',
+    instagramTag: 'gdemfvg',
   },
   {
     federation: 'Trieste',

@@ -28,7 +28,7 @@ export default function ChiSiamoPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <header className="bg-gradient-to-br from-orange-400 to-orange-500 shadow-lg min-h-[20vh] flex items-center">
+      <header className="bg-gradient-to-br from-orange-400 to-orange-500 shadow-lg flex items-center py-7">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
             Chi Siamo

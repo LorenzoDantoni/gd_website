@@ -3,7 +3,7 @@ import Link from "next/link";
 export const Hero = () => {
   return (
     <div className="relative w-full bg-gradient-to-br from-orange-400 to-orange-500">
-      <div className="mx-auto flex min-h-[50vh] max-w-4xl flex-col items-center justify-center px-6 py-16 text-center text-white">
+      <div className="mx-auto flex max-w-4xl flex-col items-center justify-center px-10 py-22 text-center text-white">
 
         <div className="">
           <h1 className="uppercase text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">

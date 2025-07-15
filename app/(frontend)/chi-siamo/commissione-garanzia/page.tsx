@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { commissioneGaranzia } from "@/data/commissione-garanzia";
+import { commissione_garanzia } from "@/data/commissione_garanzia";
 import { Scale, ShieldCheck, Users, Vote } from "lucide-react";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { SanityDocument } from "@sanity/client";
@@ -99,7 +99,7 @@ export default async function CommissioneGaranziaPage() {
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 justify-center">
-              {commissioneGaranzia.map((member) => (
+              {commissione_garanzia.map((member) => (
                 <div
                   key={member.name}
                   className="flex flex-col items-center text-center rounded-lg border border-gray-300 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-lg"

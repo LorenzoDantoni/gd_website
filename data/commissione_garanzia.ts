@@ -1,4 +1,4 @@
-export const commissioneGaranzia = [
+export const commissione_garanzia = [
   {
     name: "Paolo",
     role: "Ruolo",

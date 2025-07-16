@@ -1,6 +1,7 @@
 import ContactCard from '@/components/ContactCard';
 import RegionalContact from '@/components/RegionalContact';
 import { contatti } from '@/data/contatti';
+import Breadcrumb from "@/components/Breadcrumb";
 
 const ContattiPage = () => {
   const regionalContact = contatti.find(c => c.federation === 'Regionale');
@@ -15,6 +16,9 @@ const ContattiPage = () => {
           </h1>
         </div>
       </header>
+
+      <Breadcrumb />
+      
       <main className="bg-gray-50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {regionalContact && <RegionalContact {...regionalContact} />}

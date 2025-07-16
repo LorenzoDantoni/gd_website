@@ -13,7 +13,7 @@ const builder = imageUrlBuilder(client);
 const PostCard = ({ post }: { post: SanityDocument }) => {
   return (
     <Link
-      href={`/news/${post._id}`}
+      href={`/news/${post.slug.current}`}
       key={post._id}
       className="group flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
     >

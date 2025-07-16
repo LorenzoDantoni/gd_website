@@ -17,6 +17,7 @@ import {
 import { LatestDocuments } from "@/components/LatestDocuments";
 import ContactCard from "@/components/ContactCard";
 import { contatti } from "@/data/contatti";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export default async function GoriziaPage() {
   const posts = await sanityFetch<SanityDocument[]>({
@@ -37,6 +38,8 @@ export default async function GoriziaPage() {
           </h1>
         </div>
       </header>
+
+      <Breadcrumb />
 
       <main>
         <VipMembers members={vipGorizia} />

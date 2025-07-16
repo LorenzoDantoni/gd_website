@@ -1,3 +1,4 @@
+import Breadcrumb from "@/components/Breadcrumb";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
@@ -35,6 +36,8 @@ export default function ChiSiamoPage() {
           </h1>
         </div>
       </header>
+
+      <Breadcrumb />
 
       <main className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

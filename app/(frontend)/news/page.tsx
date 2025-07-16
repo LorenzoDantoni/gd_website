@@ -2,6 +2,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { SanityDocument } from "@sanity/client";
 import { postsQuery, federationsQuery } from "@/sanity/lib/queries";
 import NewsFilter from "@/components/NewsFilter";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const revalidate = 60;
 
@@ -33,6 +34,8 @@ const NewsPage = async ({ searchParams }: NewsPageProps) => {
           </h1>
         </div>
       </header>
+
+      <Breadcrumb />
 
       <main>
         <NewsFilter posts={posts} federations={federations} />

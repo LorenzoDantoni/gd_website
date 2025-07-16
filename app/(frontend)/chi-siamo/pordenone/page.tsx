@@ -17,6 +17,7 @@ import {
 import { LatestDocuments } from "@/components/LatestDocuments";
 import ContactCard from "@/components/ContactCard";
 import { contatti } from "@/data/contatti";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export default async function PordenonePage() {
   const posts = await sanityFetch<SanityDocument[]>({
@@ -37,6 +38,8 @@ export default async function PordenonePage() {
           </h1>
         </div>
       </header>
+
+      <Breadcrumb />
 
       <main>
         <VipMembers members={vipPordenone} />

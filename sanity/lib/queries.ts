@@ -63,8 +63,8 @@ export const documentsQuery = (
   }`;
 };
 
-// Get a single post by its _id
-export const postQuery = groq`*[_type == "post" && _id == $id][0]{
+// Get a single post by its slug
+export const postQuery = groq`*[_type == "post" && slug.current == $slug][0]{
   _id,
   _createdAt,
   title,

@@ -9,6 +9,7 @@ import {
 } from "@/sanity/lib/queries";
 import { LatestDocuments } from "@/components/LatestDocuments";
 import { News } from "@/components/News";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export default async function CommissioneGaranziaPage() {
   const posts = await sanityFetch<SanityDocument[]>({
@@ -29,6 +30,8 @@ export default async function CommissioneGaranziaPage() {
           </h1>
         </div>
       </header>
+
+      <Breadcrumb />
 
       <main>
         <section className="bg-gray-50 py-16 sm:py-24">

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Iscriviti",
@@ -18,6 +19,8 @@ const IscrivitiPage = () => {
           </h1>
         </div>
       </header>
+
+      <Breadcrumb />
 
       {/* Main Content */}
       <main>
@@ -128,7 +131,7 @@ const IscrivitiPage = () => {
             <div className="bg-gray-50 rounded-lg shadow-2xl border border-gray-100">
               <div className="p-8 md:p-12">
                 {/* Current Process */}
-                <div className="bg-orange-100 rounded-lg p-6 border-l-4 border-orange-500 mb-10">
+                <div className="bg-orange-100 rounded-lg p-6 mb-10">
                   <div className="text-center">
                     <div className="ml-4">
                       {/*<h3 className="text-xl font-semibold text-gray-900 mb-2">Processo Attuale</h3>*/}

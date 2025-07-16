@@ -2,6 +2,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { SanityDocument } from "@sanity/client";
 import { documentsQuery, documentFederationsQuery } from "@/sanity/lib/queries";
 import DocumentFilter from "@/components/DocumentFilter";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const revalidate = 60;
 
@@ -35,6 +36,8 @@ const DocumentsPage = async ({ searchParams }: DocumentsPageProps) => {
           </h1>
         </div>
       </header>
+
+      <Breadcrumb />
 
       <main>
         <DocumentFilter documents={documents} federations={federations} />

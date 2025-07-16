@@ -11,17 +11,20 @@ import { it } from "date-fns/locale";
 import Link from "next/link";
 import { CalendarDays, MapPin } from "lucide-react";
 import DocumentCard from "@/components/DocumentCard";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const revalidate = 60;
 const builder = imageUrlBuilder(client);
 
-const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
-  const { id } = await params;
+const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params;
 
   const post = await sanityFetch<SanityDocument>({
     query: postQuery,
-    params: { id },
+    params: { slug },
   });
+
+  console.log(slug);
 
   if (!post) return notFound();
 
@@ -95,10 +98,10 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="bg-gray-50">
+      <Breadcrumb />
+
+      <main className="py-16 sm:py-4">
         <article className="mx-auto max-w-4xl">
-          {/* Featured Image - Option 1: Responsive with aspect ratio */}
           {post?.postImage && (
             <div className="mt-16 px-4 sm:px-6 lg:px-8">
               <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-lg">

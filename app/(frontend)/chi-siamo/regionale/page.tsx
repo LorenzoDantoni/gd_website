@@ -16,6 +16,7 @@ import { LatestDocuments } from "@/components/LatestDocuments";
 import { News } from "@/components/News";
 import { contatti } from "@/data/contatti";
 import ContactCard from "@/components/ContactCard";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export default async function RegionalePage() {
   const posts = await sanityFetch<SanityDocument[]>({
@@ -36,6 +37,8 @@ export default async function RegionalePage() {
           </h1>
         </div>
       </header>
+
+      <Breadcrumb />
 
       <main>
         {/* Vip Section */}

@@ -40,7 +40,7 @@ export const Organization = () => {
               definisce la linea politica in Friuli Venezia Giulia.
             </p>
             <Link
-              href="/app/(frontend)/chi-siamo/regionale"
+              href="/chi-siamo/regionale"
               className="mt-8 inline-block rounded-full bg-orange-500 px-8 py-3 font-bold text-white transition hover:bg-orange-600"
             >
               CONOSCI IL NOSTRO TEAM
@@ -62,7 +62,7 @@ export const Organization = () => {
               dell&#39;organizzazione, garantendo i diritti degli iscritti.
             </p>
             <Link
-              href="/app/(frontend)/chi-siamo/commissione-garanzia"
+              href="/chi-siamo/commissione-garanzia"
               className="mt-8 inline-block rounded-full bg-orange-500 px-8 py-3 font-bold text-white transition hover:bg-orange-600"
             >
               SCOPRI LA COMMISSIONE

@@ -13,7 +13,12 @@ const Breadcrumb = () => {
   const breadcrumbs = pathSegments.map((segment, index) => {
     const href = `/${pathSegments.slice(0, index + 1).join("/")}`;
     const isLast = index === pathSegments.length - 1;
-    const text = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " ");
+    const text = segment
+      .replace(/-/g, " ")
+      .replace(/_/g, " ")
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
 
     return { href, text, isLast };
   });

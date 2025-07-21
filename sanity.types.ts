@@ -265,7 +265,7 @@ export type AllSanitySchemaTypes = Documento | Post | BlockContent | SanityImage
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: postQuery
-// Query: *[_type == "post" && slug == $slug][0]{  _id,  _createdAt,  title,  slug,  federation,  publishedAt,  cardImage,  postImage,  "cardImageURL": cardImage.asset->url,  "postImageURL": postImage.asset->url,  body,  documents[]->{    _id,    title,    "fileURL": file.asset->url,    federation,    publishedAt  }}
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  _createdAt,  title,  slug,  federation,  publishedAt,  cardImage,  postImage,  "cardImageURL": cardImage.asset->url,  "postImageURL": postImage.asset->url,  body,  documents[]->{    _id,    title,    "fileURL": file.asset->url,    federation,    publishedAt  }}
 export type PostQueryResult = {
   _id: string;
   _createdAt: string;
@@ -514,7 +514,7 @@ export type DocumentsByFederationQueryResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"post\" && slug == $slug][0]{\n  _id,\n  _createdAt,\n  title,\n  slug,\n  federation,\n  publishedAt,\n  cardImage,\n  postImage,\n  \"cardImageURL\": cardImage.asset->url,\n  \"postImageURL\": postImage.asset->url,\n  body,\n  documents[]->{\n    _id,\n    title,\n    \"fileURL\": file.asset->url,\n    federation,\n    publishedAt\n  }\n}": PostQueryResult;
+    "*[_type == \"post\" && slug.current == $slug][0]{\n  _id,\n  _createdAt,\n  title,\n  slug,\n  federation,\n  publishedAt,\n  cardImage,\n  postImage,\n  \"cardImageURL\": cardImage.asset->url,\n  \"postImageURL\": postImage.asset->url,\n  body,\n  documents[]->{\n    _id,\n    title,\n    \"fileURL\": file.asset->url,\n    federation,\n    publishedAt\n  }\n}": PostQueryResult;
     "*[_type == \"post\"] | order(publishedAt desc)[0...4] {\n  _id,\n  _createdAt,\n  title,\n  slug,\n  federation,\n  publishedAt,\n  cardImage,\n  postImage,\n  \"cardImageURL\": cardImage.asset->url,\n  \"postImageURL\": postImage.asset->url,\n  body,\n  documents[]->{\n    _id,\n    title,\n    \"fileURL\": file.asset->url,\n    federation,\n    publishedAt\n  }\n}": LastPostsQueryResult;
     "*[_type == \"post\" && federation == $federation] | order(publishedAt desc)[0...4] {\n  _id,\n  _createdAt,\n  title,\n  slug,\n  federation,\n  publishedAt,\n  cardImage,\n  postImage,\n  \"cardImageURL\": cardImage.asset->url,\n  \"postImageURL\": postImage.asset->url,\n  body,\n  documents[]->{\n    _id,\n    title,\n    \"fileURL\": file.asset->url,\n    federation,\n    publishedAt\n  }\n}": PostsByFederationQueryResult;
     "array::unique(*[_type == \"post\" && defined(federation)].federation)": FederationsQueryResult;

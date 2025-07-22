@@ -98,7 +98,7 @@ export const NavbarMobile = () => {
                             key={subItem.href}
                             href={subItem.href}
                             onClick={closeMenu}
-                            className="block rounded-md px-3 py-2 text-sm text-center font-light text-gray-600 hover:bg-white hover:text-orange-500 transition-colors duration-200"
+                            className="block px-3 py-2 text-sm font-light text-gray-700 text-left"
                           >
                             {subItem.label}
                           </Link>
@@ -110,7 +110,7 @@ export const NavbarMobile = () => {
                   <Link
                     href={item.href}
                     onClick={closeMenu}
-                    className="block rounded-md px-3 py-2 text-lg text-center text-gray-800 hover:bg-orange-50 hover:text-orange-400"
+                    className="block px-3 py-2 text-lg text-center text-gray-800 hover:bg-orange-50 hover:text-orange-400"
                   >
                     {item.label}
                   </Link>
